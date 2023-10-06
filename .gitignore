@@ -5,3 +5,4 @@ mono_crash.*.json
 
 # godot
 .import/
+export/

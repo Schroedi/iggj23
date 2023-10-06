@@ -2,7 +2,7 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 3.5.2
+  GODOT_VERSION: 3.5.3
   EXPORT_NAME: iggj23
   
 jobs:
@@ -58,7 +58,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:mono-3.5.2
+      image: keksdev//godot-ci:mono-3.5.3
     steps:
       - name: Checkout
         uses: actions/checkout@v2

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -10, 2 )
+scale = Vector2( 1.15504, 0.953642 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 64, 64 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 124, 22, 157, 135, 29, 173, 28, 91, 81, 41, 81, 41 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( -32.8994, 63.9653 )
+scale = Vector2( 1.15504, 0.953642 )
+offset = Vector2( -89.5231, -40.6191 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 64, 64 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 127.751, 20.8266, 139.744, 119.789, 53.5442, 121.988, 44.5495, 79.1046, 58.7911, 17.5278, 87.2745, 9.83073 )
+script = ExtResource( 2 )

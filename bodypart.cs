@@ -3,19 +3,28 @@ using System;
 
 public class bodypart : RigidBody2D
 {
-    [Export]
-    public NodePath ParentPart;
+    [Export] public NodePath ParentPart;
 
-    [Export]
-    public float RotSpeed = 1.5f;
+    [Export] public float RotSpeed = 1.5f;
 
-    [Export]
-    public float RotLimit = 1.5f;
+    [Export] public float RotLimit = 1.5f;
 
     private bodypart parentPart;
     private PinJoint2D Joint;
     private double runtime = 0f;
+    private Polygon2D SpritePolygon;
+    private CollisionPolygon2D CollisionPolygon;
 
+    private AnimalDataSetup.BodyPart poly;
+
+    public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
+    {
+        poly = bp;
+        parentPart = pp;
+    }
+    public bodypart()
+    {
+    }
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -23,6 +32,19 @@ public class bodypart : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        SpritePolygon = GetNode<Polygon2D>("SpritePolygon");
+        CollisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon");
+        if (poly != null)
+        {
+            SpritePolygon.Polygon = poly.Poly.ToArray();
+            CollisionPolygon.Polygon = poly.Poly.ToArray();
+        }
+
+        if (ParentPart == null && parentPart != null)
+        {
+            ParentPart = parentPart.GetPath();
+        }
+
         if (ParentPart != null)
         {
             var pnode = GetNode<bodypart>(ParentPart);
@@ -35,6 +57,11 @@ public class bodypart : RigidBody2D
 
             GetParent().CallDeferred("add_child", Joint);
         }
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

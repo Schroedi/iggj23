@@ -6,13 +6,15 @@ public class Animal : Node2D
 {
     // empty
 
-
+    public AnimalDataSetup Setup;
 
     public override void _Ready()
     {
         var setup = CreateAnimalDataSetup();
+        Setup = setup;
         setup.DebugPrint();
     }
+
 
     private AnimalDataSetup CreateAnimalDataSetup()
     {

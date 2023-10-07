@@ -14,7 +14,7 @@ extents = Vector2( 143.5, 315 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 564, 809 )
+position = Vector2( 561, 722 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -22,7 +22,7 @@ position = Vector2( -147, 302 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1171, 299 )
+position = Vector2( 1107, 312 )
 shape = SubResource( 2 )
 
 [node name="Animal" parent="." instance=ExtResource( 1 )]

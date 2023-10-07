@@ -44,7 +44,7 @@ public class bodypart : RigidBody2D
     public bodypart()
     {
     }
-    
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -100,24 +100,24 @@ public class bodypart : RigidBody2D
                 this.AddChild(blood);
             }
 
-        if (false)
-            foreach (var bs in poly.BloodySegments)
-            {
-                var p0 = poly.Poly[bs];
-                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+        foreach (var bs in poly.BloodySegments)
+        {
+            var p0 = poly.Poly[bs];
+            var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
 
-                var tex = FreshWoundTextures[0]; // TODO
+            var tex = FreshWoundTextures[0]; // TODO
 
-                Vector2 dir = p1 - p0;
+            Vector2 dir = p1 - p0;
 
-                var texR = new TextureRect();
-                texR.Texture = tex;
-                texR.RectGlobalPosition = (p0 + p1) / 2;
-                texR.RectRotation = dir.Angle();
-                texR.RectPivotOffset = tex.GetSize() / 2;
-                // texR.RectScale = 
-                this.AddChild(texR);
-            }
+            var texR = new TextureRect();
+            texR.Texture = tex;
+            texR.RectGlobalPosition = (p0 + p1) / 2;
+            texR.RectRotation = dir.Angle();
+            texR.RectPivotOffset = tex.GetSize() / 2;
+            // texR.RectScale = 
+            // FIXME
+            this.AddChild(texR);
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

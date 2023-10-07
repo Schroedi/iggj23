@@ -31,7 +31,7 @@ public class Cutter : Line2D
                 {
                     if (_raycast.GetCollider() is bodypart part)
                     {
-                        CutAnimal(part);
+                        CutAnimal(part, _startPos, touch.Position);
                     }
                     else
                     {
@@ -53,10 +53,10 @@ public class Cutter : Line2D
         base._Input(@event);
     }
 
-    private void CutAnimal(bodypart bodypart)
+    private void CutAnimal(bodypart bodypart, Vector2 from, Vector2 to)
     {
         var animal = bodypart.Animal;
-        var cut = AnimalCutter.Cut(animal.Setup, new Vector2(0, 400), new Vector2(1000, 400));
+        var cut = AnimalCutter.Cut(animal.Setup, from, to);
         var parent = animal.GetParent();
         foreach (var a in cut.NewAnimals)
         {

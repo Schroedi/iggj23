@@ -24,3 +24,12 @@ texture_offset = Vector2( 64, 64 )
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( 127.751, 20.8266, 170.423, 151.654, 51.4225, 144.654, 44.5495, 79.1046, 58.7911, 17.5278, 87.2745, 9.83073 )
 script = ExtResource( 2 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D"]
+position = Vector2( 2, 96 )
+offset = Vector2( -86.5231, -24.6191 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 64, 64 )
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( 127.751, 20.8266, 134.523, 97.6191, 53.5231, 99.6191, 44.5495, 79.1046, 58.7911, 17.5278, 87.2745, 9.83073 )
+script = ExtResource( 2 )

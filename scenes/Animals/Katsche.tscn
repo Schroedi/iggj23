@@ -39,7 +39,7 @@ polygon = PoolVector2Array( -1.91151, -61.864, -8.12329, -55.9977, -14.2968, -43
 script = ExtResource( 2 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D/Polygon2D2"]
-position = Vector2( 6.81845, -56.0224 )
+position = Vector2( 3.57056, -61.1657 )
 rotation = 1.17276
 offset = Vector2( -0.523121, -1.61906 )
 texture = ExtResource( 1 )

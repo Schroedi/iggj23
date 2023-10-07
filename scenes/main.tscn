@@ -12,26 +12,14 @@ extents = Vector2( 143.5, 315 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 892, 144 )
-rotation = 0.49346
-linear_damp = 0.01
-angular_damp = 0.001
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
-position = Vector2( -181.984, -146.246 )
-rotation = -0.125088
-polygon = PoolVector2Array( 186, 101, 213, 176, 183, 191, 35, 258, 27, 155, 115, 110 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RigidBody2D"]
-position = Vector2( -163.83, -152.604 )
-rotation = -0.125088
-polygon = PoolVector2Array( 227, 139, 246, 272, 147, 271, 145, 170 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 564, 809 )
+position = Vector2( 551, 717 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 587, -207 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -39,12 +27,12 @@ position = Vector2( -147, 302 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1171, 299 )
+position = Vector2( 1105, 271 )
 shape = SubResource( 2 )
 
 [node name="Animal" parent="." instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 274, 269 )
+position = Vector2( 627, 198 )
 
 [node name="AnimalPhysics" parent="." instance=ExtResource( 2 )]
 position = Vector2( 260, 389 )

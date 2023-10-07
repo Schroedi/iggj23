@@ -13,7 +13,7 @@
 
 [node name="Animal" parent="." instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 158, 484 )
+position = Vector2( 183, 315 )
 
 [node name="AnimalPhysics" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )

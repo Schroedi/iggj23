@@ -51,6 +51,7 @@ position = Vector2( 260, 389 )
 AnimalPath = NodePath("../Animal")
 
 [node name="Cutter" type="Line2D" parent="."]
+visible = false
 position = Vector2( 392, 335 )
 points = PoolVector2Array( 0, 0, 317, 156 )
 default_color = Color( 1, 0, 0, 1 )

@@ -94,34 +94,35 @@ public class bodypart : RigidBody2D
                 this.AddChild(blood);
             }
         }
+    }
 
-        void OnInput(Node viewport, InputEvent @event, int shapeIdx)
+    void OnInput(Node viewport, InputEvent @event, int shapeIdx)
+    {
+        if (@event is InputEventScreenTouch touch)
         {
-            if (@event is InputEventScreenTouch touch)
-            {
-                IsDragging = touch.IsPressed();
+            IsDragging = touch.IsPressed();
 
-                // add a pin joint between touch position and mouse position
-                var globalPos = touch.Position * GetViewportTransform();
-                MouseBody.GlobalPosition = touch.Position;
-                var partent = GetParent<Node2D>();
+            // add a pin joint between touch position and mouse position
+            var globalPos = touch.Position * GetViewportTransform();
+            MouseBody.GlobalPosition = touch.Position;
+            var partent = GetParent<Node2D>();
 
-                MouseJoint = new PinJoint2D();
+            MouseJoint = new PinJoint2D();
 
-                MouseJoint.NodeA = MouseBody.GetPath();
-                MouseJoint.NodeB = this.GetPath();
+            MouseJoint.NodeA = MouseBody.GetPath();
+            MouseJoint.NodeB = this.GetPath();
 
-                MouseJoint.DisableCollision = true;
+            MouseJoint.DisableCollision = true;
 
 
-                //MouseJoint.GlobalPosition = GlobalPosition;
-                //MouseJoint.Bias = 0.1f;
-                MouseJoint.Softness = 10;
+            //MouseJoint.GlobalPosition = GlobalPosition;
+            //MouseJoint.Bias = 0.1f;
+            MouseJoint.Softness = 10;
 
-                MouseBody.AddChild(MouseJoint);
-            }
+            MouseBody.AddChild(MouseJoint);
         }
     }
+
 
     public override void _Input(InputEvent @event)
     {
@@ -137,7 +138,10 @@ public class bodypart : RigidBody2D
 
         if (@event is InputEventScreenDrag drag)
         {
-            MouseBody.GlobalPosition = drag.Position;
+           
+      
+            var globalPos = drag.Position * GetViewportTransform();
+            MouseBody.GlobalPosition = globalPos;
             GD.Print(drag.Position);
         }
     }

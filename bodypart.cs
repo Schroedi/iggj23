@@ -15,11 +15,6 @@ public class bodypart : RigidBody2D
     private Polygon2D SpritePolygon;
     private CollisionPolygon2D CollisionPolygon;
 
-    private bool IsDragging = false;
-    private PinJoint2D MouseJoint = null;
-    private KinematicBody2D MouseBody = new KinematicBody2D();
-    private Sprite DebugSprite = new Sprite();
-
     private AnimalDataSetup.BodyPart poly;
 
 
@@ -32,19 +27,10 @@ public class bodypart : RigidBody2D
     public bodypart()
     {
     }
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Connect("input_event", this, nameof(OnInput));
-        GetParent().AddChild(MouseBody);
-
-        DebugSprite.Texture = ResourceLoader.Load<Texture>("res://icon.png");
-        //MouseBody.AddChild(DebugSprite);
-
         // otherwise dragging can fail
         CanSleep = false;
 
@@ -94,52 +80,6 @@ public class bodypart : RigidBody2D
                 this.AddChild(blood);
             }
         }
-
-        void OnInput(Node viewport, InputEvent @event, int shapeIdx)
-        {
-            if (@event is InputEventScreenTouch touch)
-            {
-                IsDragging = touch.IsPressed();
-
-                // add a pin joint between touch position and mouse position
-                var globalPos = touch.Position * GetViewportTransform();
-                MouseBody.GlobalPosition = touch.Position;
-                var partent = GetParent<Node2D>();
-
-                MouseJoint = new PinJoint2D();
-
-                MouseJoint.NodeA = MouseBody.GetPath();
-                MouseJoint.NodeB = this.GetPath();
-
-                MouseJoint.DisableCollision = true;
-
-
-                //MouseJoint.GlobalPosition = GlobalPosition;
-                //MouseJoint.Bias = 0.1f;
-                MouseJoint.Softness = 10;
-
-                MouseBody.AddChild(MouseJoint);
-            }
-        }
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventScreenTouch touch && !touch.IsPressed())
-        {
-            if (IsDragging)
-            {
-                IsDragging = false;
-                MouseBody.RemoveChild(MouseJoint);
-                MouseJoint.Dispose();
-            }
-        }
-
-        if (@event is InputEventScreenDrag drag)
-        {
-            MouseBody.GlobalPosition = drag.Position;
-            GD.Print(drag.Position);
-        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -153,16 +93,4 @@ public class bodypart : RigidBody2D
             AngularVelocity = (float)targetAngle * RotLimit;
         }
     }
-
-    // public override void _IntegrateForces(Physics2DDirectBodyState state)
-    // {
-    //     if (IsDragging)
-    //     {
-    //         const float scale = 0.16f;
-    //         var v = (GetViewport().GetMousePosition() - Position) * scale;
-    //         //state.AddCentralForce(v);
-    //         //state.LinearVelocity = v;
-    //     }
-    //     base._IntegrateForces(state);
-    // }
 }

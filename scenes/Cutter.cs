@@ -21,7 +21,7 @@ public class Cutter : Line2D
         if (@event is InputEventScreenDrag evnt)
         {
             this.SetPointPosition(1, evnt.Position - this.GlobalPosition);
-            GD.Print(this.Points[1]);
+            //GD.Print(this.Points[1]);
         }
 
         base._Input(@event);

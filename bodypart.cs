@@ -14,7 +14,7 @@ public class bodypart : RigidBody2D
     private double runtime = 0f;
     private Polygon2D SpritePolygon;
     private CollisionPolygon2D CollisionPolygon;
-    
+
     private bool IsDragging = false;
     private PinJoint2D MouseJoint = null;
     private KinematicBody2D MouseBody = new KinematicBody2D();
@@ -39,15 +39,15 @@ public class bodypart : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-Connect("input_event", this, nameof(OnInput));
+        Connect("input_event", this, nameof(OnInput));
         GetParent().AddChild(MouseBody);
-        
+
         DebugSprite.Texture = ResourceLoader.Load<Texture>("res://icon.png");
-        MouseBody.AddChild(DebugSprite);
+        //MouseBody.AddChild(DebugSprite);
 
         // otherwise dragging can fail
         CanSleep = false;
-    
+
         var bloodPScence = GD.Load<PackedScene>("res://BloodParticles.tscn");
 
         SpritePolygon = GetNode<Polygon2D>("SpritePolygon");
@@ -80,46 +80,45 @@ Connect("input_event", this, nameof(OnInput));
             AddChild(Joint);
             //GetParent().CallDeferred("add_child", Joint);
         }
-    }
-    
-    private void OnInput(Node viewport, InputEvent @event, int shapeIdx)
-    {
-        if (@event is InputEventScreenTouch touch)
-        {
-            IsDragging = touch.IsPressed();
-            
-            // add a pin joint between touch position and mouse position
-            var globalPos = touch.Position * GetViewportTransform();
-            MouseBody.GlobalPosition = touch.Position;
-            var partent = GetParent<Node2D>();
-
-            MouseJoint = new PinJoint2D();
-            
-            MouseJoint.NodeA = MouseBody.GetPath();
-            MouseJoint.NodeB = this.GetPath();
-            
-            MouseJoint.DisableCollision = true;
-            
-            
-            //MouseJoint.GlobalPosition = GlobalPosition;
-            //MouseJoint.Bias = 0.1f;
-            MouseJoint.Softness = 10;
-            
-            MouseBody.AddChild(MouseJoint);
-            
-        }
 
         if (poly.BloodySegments.Count > 0)
         {
             foreach (var bs in poly.BloodySegments)
             {
                 var blood = bloodPScence.Instance<CPUParticles2D>();
-                
+
                 Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
-                blood.GlobalPosition = poly.Poly[bs]+dir*0.5f;
-                blood.EmissionRectExtents= new Vector2(dir.Length()/2,0);
+                blood.GlobalPosition = poly.Poly[bs] + dir * 0.5f;
+                blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
                 blood.Rotation = dir.Angle();
                 this.AddChild(blood);
+            }
+        }
+
+        void OnInput(Node viewport, InputEvent @event, int shapeIdx)
+        {
+            if (@event is InputEventScreenTouch touch)
+            {
+                IsDragging = touch.IsPressed();
+
+                // add a pin joint between touch position and mouse position
+                var globalPos = touch.Position * GetViewportTransform();
+                MouseBody.GlobalPosition = touch.Position;
+                var partent = GetParent<Node2D>();
+
+                MouseJoint = new PinJoint2D();
+
+                MouseJoint.NodeA = MouseBody.GetPath();
+                MouseJoint.NodeB = this.GetPath();
+
+                MouseJoint.DisableCollision = true;
+
+
+                //MouseJoint.GlobalPosition = GlobalPosition;
+                //MouseJoint.Bias = 0.1f;
+                MouseJoint.Softness = 10;
+
+                MouseBody.AddChild(MouseJoint);
             }
         }
     }
@@ -135,10 +134,11 @@ Connect("input_event", this, nameof(OnInput));
                 MouseJoint.Dispose();
             }
         }
+
         if (@event is InputEventScreenDrag drag)
         {
             MouseBody.GlobalPosition = drag.Position;
-            //GD.Print(drag.Position);
+            GD.Print(drag.Position);
         }
     }
 
@@ -152,7 +152,6 @@ Connect("input_event", this, nameof(OnInput));
             var targetAngle = Math.Cos(runtime * RotSpeed);
             AngularVelocity = (float)targetAngle * RotLimit;
         }
-        
     }
 
     // public override void _IntegrateForces(Physics2DDirectBodyState state)

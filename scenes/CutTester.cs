@@ -26,6 +26,10 @@ public class CutTester : Node2D
             first = false;
 
             var animal = GetNode<Animal>(TestAnimal);
+
+            // var ap = new AnimalPhysics() { AnimalSetup = animal.Setup };
+            // AddChild(ap);
+
             var cut = AnimalCutter.Cut(animal.Setup, new Vector2(0, 360), new Vector2(1, 0));
             foreach (var a in cut.NewAnimals)
             {

@@ -15,13 +15,24 @@ public class bodypart : RigidBody2D
     private Polygon2D SpritePolygon;
     private CollisionPolygon2D CollisionPolygon;
 
-    private bool IsDragging = false;
-    private PinJoint2D MouseJoint = null;
-    private KinematicBody2D MouseBody = new KinematicBody2D();
-    private Sprite DebugSprite = new Sprite();
-
     private AnimalDataSetup.BodyPart poly;
 
+    private static Texture[] DropletTextures = new[]{
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet1.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet2.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet3.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet4.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet5.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet6.png"),
+    };
+    private static Texture[] FreshWoundTextures = new[]{
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh1.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh2.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh3.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh4.png"),
+    };
+
+    private static float[] WoundTextureScalings = new[] { 1.25f, 1.27f, 1.175f, 1.12f };
 
     public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
     {
@@ -35,19 +46,10 @@ public class bodypart : RigidBody2D
     public bodypart()
     {
     }
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Connect("input_event", this, nameof(OnInput));
-        GetParent().AddChild(MouseBody);
-
-        DebugSprite.Texture = ResourceLoader.Load<Texture>("res://icon.png");
-        //MouseBody.AddChild(DebugSprite);
-
         // otherwise dragging can fail
         CanSleep = false;
 
@@ -84,68 +86,47 @@ public class bodypart : RigidBody2D
             //GetParent().CallDeferred("add_child", Joint);
         }
 
-        if (poly.BloodySegments.Count > 0)
-        {
+        foreach (var tex in DropletTextures)
             foreach (var bs in poly.BloodySegments)
             {
                 var blood = bloodPScence.Instance<CPUParticles2D>();
 
-                Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
-                blood.GlobalPosition = poly.Poly[bs] + dir * 0.5f;
+                var p0 = poly.Poly[bs];
+                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+
+                Vector2 dir = p1 - p0;
+                blood.GlobalPosition = p0 + dir * 0.5f;
                 blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
                 blood.Rotation = dir.Angle();
+                blood.Texture = tex;
                 this.AddChild(blood);
             }
-        }
-    }
 
-    void OnInput(Node viewport, InputEvent @event, int shapeIdx)
-    {
-        if (@event is InputEventScreenTouch touch)
+        foreach (var bs in poly.BloodySegments)
         {
-            IsDragging = touch.IsPressed();
+            var p0 = poly.Poly[bs];
+            var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+            Vector2 dir = p1 - p0;
+            float len = dir.Length();
+            int idx = (int)Math.Round(len / 50);
+            if(idx<0)
+                idx = 0;
+            if(idx>=FreshWoundTextures.Length)
+                idx = FreshWoundTextures.Length-1;
+            idx = 3;
+            var tex = FreshWoundTextures[idx]; // TODO
 
-            // add a pin joint between touch position and mouse position
-            var globalPos = touch.Position * GetViewportTransform();
-            MouseBody.GlobalPosition = touch.Position;
-            var partent = GetParent<Node2D>();
-
-            MouseJoint = new PinJoint2D();
-
-            MouseJoint.NodeA = MouseBody.GetPath();
-            MouseJoint.NodeB = this.GetPath();
-
-            MouseJoint.DisableCollision = true;
-
-
-            //MouseJoint.GlobalPosition = GlobalPosition;
-            //MouseJoint.Bias = 0.1f;
-            MouseJoint.Softness = 10;
-
-            MouseBody.AddChild(MouseJoint);
-        }
-    }
-
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventScreenTouch touch && !touch.IsPressed())
-        {
-            if (IsDragging)
-            {
-                IsDragging = false;
-                MouseBody.RemoveChild(MouseJoint);
-                MouseJoint.Dispose();
-            }
-        }
-
-        if (@event is InputEventScreenDrag drag)
-        {
-           
-      
-            var globalPos = drag.Position * GetViewportTransform();
-            MouseBody.GlobalPosition = globalPos;
-            GD.Print(drag.Position);
+         
+            GD.Print(dir.Length());
+            var texR = new Sprite();
+            texR.Texture = tex;
+            float scl = len*WoundTextureScalings[idx]/ tex.GetSize().y;
+            texR.Position = p0+dir/2;
+            texR.Rotation = dir.Angle()+Mathf.Pi/2;
+            texR.Scale = new Vector2(scl,scl);
+            
+            // FIXME
+            this.AddChild(texR);
         }
     }
 
@@ -160,16 +141,4 @@ public class bodypart : RigidBody2D
             AngularVelocity = (float)targetAngle * RotLimit;
         }
     }
-
-    // public override void _IntegrateForces(Physics2DDirectBodyState state)
-    // {
-    //     if (IsDragging)
-    //     {
-    //         const float scale = 0.16f;
-    //         var v = (GetViewport().GetMousePosition() - Position) * scale;
-    //         //state.AddCentralForce(v);
-    //         //state.LinearVelocity = v;
-    //     }
-    //     base._IntegrateForces(state);
-    // }
 }

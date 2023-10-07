@@ -6,7 +6,7 @@ public class Cutter : Line2D
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    
+
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventScreenTouch touch)
@@ -15,6 +15,12 @@ public class Cutter : Line2D
             {
                 var pos = touch.Position;
                 GlobalPosition = pos;
+                this.SetPointPosition(1, new Vector2());
+                this.Visible = true;
+            }
+            else
+            {
+                this.Visible = false;
             }
         }
 
@@ -32,9 +38,9 @@ public class Cutter : Line2D
     {
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    //  public override void _Process(float delta)
+    //  {
+    //      
+    //  }
 }

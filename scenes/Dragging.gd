@@ -20,7 +20,7 @@ func _on_RigidBody2D_input_event(viewport: Viewport, event: InputEvent, shape_id
 			return
 		dragging = true
 		GlobalHack.Picked = true
-		mouseBody.global_position = event.position3
+		mouseBody.global_position = event.position
 		joint = PinJoint2D.new()
 		joint.name = "mouseJoint"
 		get_parent().add_child(joint)

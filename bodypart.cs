@@ -8,6 +8,8 @@ public class bodypart : RigidBody2D
     [Export] public float RotSpeed = 1.5f;
 
     [Export] public float RotLimit = 1.5f;
+    
+    public Animal Animal { get { return poly.Animal; } }
 
     private bodypart parentPart;
     private PinJoint2D Joint;

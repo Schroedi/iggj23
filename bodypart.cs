@@ -17,6 +17,14 @@ public class bodypart : RigidBody2D
 
     private AnimalDataSetup.BodyPart poly;
 
+    private static Texture[] DropletTextures = new[]{
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet1.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet2.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet3.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet4.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet5.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet6.png"),
+    };
 
     public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
     {
@@ -72,16 +80,18 @@ public class bodypart : RigidBody2D
 
         if (poly.BloodySegments.Count > 0)
         {
-            foreach (var bs in poly.BloodySegments)
-            {
-                var blood = bloodPScence.Instance<CPUParticles2D>();
+            foreach (var tex in DropletTextures)
+                foreach (var bs in poly.BloodySegments)
+                {
+                    var blood = bloodPScence.Instance<CPUParticles2D>();
 
-                Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
-                blood.GlobalPosition = poly.Poly[bs] + dir * 0.5f;
-                blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
-                blood.Rotation = dir.Angle();
-                this.AddChild(blood);
-            }
+                    Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
+                    blood.GlobalPosition = poly.Poly[bs] + dir * 0.5f;
+                    blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
+                    blood.Rotation = dir.Angle();
+                    blood.Texture = tex;
+                    this.AddChild(blood);
+                }
         }
     }
 

@@ -8,10 +8,6 @@ func _ready() -> void:
 	# mouse body should be outside of this body
 	mouseBody = KinematicBody2D.new()
 	get_parent().get_parent().add_child(mouseBody)
-	var s = Sprite.new()
-	s.texture = preload("res://icon.png")
-	mouseBody.add_child(s)
-	
 	get_parent().connect("input_event", self, "_on_RigidBody2D_input_event")
 
 

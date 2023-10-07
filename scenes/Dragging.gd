@@ -9,6 +9,8 @@ func _ready() -> void:
 	mouseBody = KinematicBody2D.new()
 	get_parent().get_parent().add_child(mouseBody)
 	get_parent().connect("input_event", self, "_on_RigidBody2D_input_event")
+	get_parent().connect("mouse_entered", self, "_on_RigidBody2D_mouse_entered")
+	get_parent().connect("mouse_exited", self, "_on_RigidBody2D_mouse_exited")
 
 
 func _on_RigidBody2D_input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
@@ -18,7 +20,7 @@ func _on_RigidBody2D_input_event(viewport: Viewport, event: InputEvent, shape_id
 			return
 		dragging = true
 		GlobalHack.Picked = true
-		mouseBody.global_position = event.position
+		mouseBody.global_position = event.position3
 		joint = PinJoint2D.new()
 		joint.name = "mouseJoint"
 		get_parent().add_child(joint)
@@ -43,3 +45,11 @@ func _input(event: InputEvent) -> void:
 			joint = null
 	if event is InputEventScreenDrag:
 		mouseBody.global_position = event.position
+
+
+func _on_RigidBody2D_mouse_entered() -> void:
+	GlobalHack.PartsHovering += 1
+
+
+func _on_RigidBody2D_mouse_exited() -> void:
+	GlobalHack.PartsHovering -= 1

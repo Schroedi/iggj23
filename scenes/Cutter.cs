@@ -3,14 +3,14 @@ using System;
 
 public class Cutter : Line2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    public override void _Input(InputEvent @event)
+    private Node globals;
+    
+    public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventScreenTouch touch)
         {
+            if (globals.Get("PartsHovering") as int? != 0)
+                return;
             if (touch.Pressed)
             {
                 var pos = touch.Position;
@@ -36,6 +36,7 @@ public class Cutter : Line2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        globals = GetNode<Node>("/root/GlobalHack");
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.

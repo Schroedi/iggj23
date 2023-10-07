@@ -117,6 +117,7 @@ public static class AnimalCutter
             pArea += Mathf.Abs((p1 - p).Cross(p0 - p));
         }
 
+        // GD.Print(Math.Abs(polyArea - pArea));
         return Math.Abs(polyArea - pArea) < 0.1;
     }
 

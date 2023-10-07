@@ -31,6 +31,10 @@ public class Animal : Node2D
             p.RotLimit = poly.RotLimit;
             p.RotSpeed = poly.RotSpeed;
             p.Poly = poly.Polygon.ToList();
+            p.Texture = poly.Texture;
+            p.TexOffset = poly.TextureOffset;
+            p.TexScale = poly.TextureScale;
+            p.TexRot = poly.TextureRotation;
             for (var i = 0; i < p.Poly.Count; ++i)
                 p.Poly[i] += poly.Offset;
 

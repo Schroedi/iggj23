@@ -36,8 +36,14 @@ public class bodypart : RigidBody2D
         CollisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon");
         if (poly != null)
         {
+            this.GlobalPosition = poly.Origin;
             SpritePolygon.Polygon = poly.Poly.ToArray();
+            SpritePolygon.Texture = poly.Texture;
+            SpritePolygon.TextureRotation = poly.TexRot;
+            SpritePolygon.TextureOffset = poly.TexOffset;
+            SpritePolygon.TextureScale = poly.TexScale;
             CollisionPolygon.Polygon = poly.Poly.ToArray();
+          
         }
 
         if (ParentPart == null && parentPart != null)

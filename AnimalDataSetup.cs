@@ -10,7 +10,10 @@ public class AnimalDataSetup
         public float RotLimit = 0f;
         public int ParentIndex = -1; // -1 is root
         public Vector2 Origin;
-
+        public Texture Texture;
+        public Vector2 TexOffset; 
+        public Vector2 TexScale;
+        public float TexRot;
         public List<Vector2> Poly = new List<Vector2>();
 
         // from idx to idx + 1 (mod Poly Count)

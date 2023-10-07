@@ -12,7 +12,10 @@ public class Animal : Node2D
     {
         var setup = CreateAnimalDataSetup();
         Setup = setup;
-        setup.DebugPrint();
+
+        var cut = AnimalCutter.Cut(setup, new Vector2(0, 360), new Vector2(1, 0));
+        foreach (var a in cut.NewAnimals)
+            a.DebugPrint();
     }
 
 

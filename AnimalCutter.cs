@@ -38,7 +38,7 @@ public static class AnimalCutter
                 AnimalDataSetup.BodyPart parentPart = null;
                 foreach (var pp in newParts[p.ParentIndex])
                 {
-                    if (IsPointInside(p.Origin, pp.Poly))
+                    if (IsPointInside(p.Origin, pp.Poly, pp.Origin))
                         parentPart = pp;
                 }
 
@@ -87,8 +87,10 @@ public static class AnimalCutter
         return res;
     }
 
-    private static bool IsPointInside(Vector2 p, List<Vector2> pts)
+    private static bool IsPointInside(Vector2 p, List<Vector2> pts, Vector2 ptsOffset)
     {
+        p -= ptsOffset; // to local
+
         var polyArea = 0.0;
         for (var i = 2; i < pts.Count; ++i)
         {
@@ -117,8 +119,8 @@ public static class AnimalCutter
     {
         double PlaneDis(Vector2 p)
         {
-            var x = p.x - pos.x;
-            var y = p.y - pos.y;
+            var x = part.Origin.x + p.x - pos.x;
+            var y = part.Origin.y + p.y - pos.y;
             var d = x * (double)(dir.y) - y * (double)(dir.x);
             // if (Mathf.Abs(d) < 0.1)
             //     d = 0.1f;
@@ -143,6 +145,10 @@ public static class AnimalCutter
             newPart.Definition = part.Definition;
             newPart.RotLimit = part.RotLimit;
             newPart.RotSpeed = part.RotSpeed;
+            newPart.Texture = part.Texture;
+            newPart.TexOffset = part.TexOffset;
+            newPart.TexScale = part.TexScale;
+            newPart.TexRot = part.TexRot;
 
             for (var i = 0; i < part.Poly.Count; ++i)
             {
@@ -184,7 +190,7 @@ public static class AnimalCutter
             }
 
             // parent index
-            if (IsPointInside(newPart.Origin, newPart.Poly))
+            if (IsPointInside(newPart.Origin, newPart.Poly, newPart.Origin))
                 newPart.ParentIndex = part.ParentIndex;
 
             return newPart;

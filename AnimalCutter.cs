@@ -14,11 +14,11 @@ public class AnimalCutResult
 
 public static class AnimalCutter
 {
-    public static AnimalCutResult Cut(AnimalDataSetup animal, Vector2 pos, Vector2 dir)
+    public static AnimalCutResult Cut(AnimalDataSetup animal, Vector2 pos0, Vector2 pos1)
     {
         // array of array of parts
         // outer index corresponds to original index (and thus ParentIndex)
-        var newParts = animal.Parts.Select(p => CutPart(p, pos, dir)).ToArray();
+        var newParts = animal.Parts.Select(p => CutPart(p, pos0, pos1)).ToArray();
 
         // TODO: preserve connections
 
@@ -121,8 +121,52 @@ public static class AnimalCutter
         return Math.Abs(polyArea - pArea) < 0.1;
     }
 
-    private static List<AnimalDataSetup.BodyPart> CutPart(AnimalDataSetup.BodyPart part, Vector2 pos, Vector2 dir)
+    private static bool IntersectsSegPoly(Vector2 p1, Vector2 p2, List<Vector2> pts, Vector2 offset)
     {
+        if (IsPointInside(p1, pts, offset) || IsPointInside(p2, pts, offset))
+            return true;
+
+        p1 -= offset;
+        p2 -= offset;
+
+        for (var i = 0; i < pts.Count; ++i)
+        {
+            var q1 = pts[i];
+            var q2 = pts[(i + 1) % pts.Count];
+
+            Vector2 r = p2 - p1;
+            Vector2 s = q2 - q1;
+
+            float denominator = r.Cross(s);
+            Vector2 pq1 = q1 - p1;
+
+            // Lines are parallel
+            if (Math.Abs(denominator) < 1e-10)
+                continue;
+
+            float t = pq1.Cross(s) / denominator;
+            float u = pq1.Cross(r) / denominator;
+
+            if (t >= 0 && t <= 1 && u >= 0 && u <= 1)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static List<AnimalDataSetup.BodyPart> CutPart(AnimalDataSetup.BodyPart part, Vector2 pos0, Vector2 pos1)
+    {
+        // too short? -> no cut
+        if ((pos1 - pos0).Length() < 10)
+            return new List<AnimalDataSetup.BodyPart> { part };
+
+        // no intersection? -> no cut
+        if (!IntersectsSegPoly(pos0, pos1, part.Poly, part.Origin))
+            return new List<AnimalDataSetup.BodyPart> { part };
+
+        var pos = pos0;
+        var dir = (pos1 - pos0).Normalized();
+
         double PlaneDis(Vector2 p)
         {
             var x = part.Origin.x + p.x - pos.x;

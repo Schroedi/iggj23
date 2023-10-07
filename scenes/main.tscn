@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://scenes/bodypart.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/AnimalPhysics.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/AnimalA.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -56,26 +56,9 @@ position = Vector2( 1171, 299 )
 shape = SubResource( 2 )
 
 [node name="Animal" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 635, 348 )
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Bein1" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 257, 325 )
-rotation = -0.411602
-ParentPart = NodePath("../PartRoot")
-
-[node name="Bein2" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 188, 326 )
-rotation = 0.429009
-ParentPart = NodePath("../PartRoot")
-
-[node name="Bein3" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 151, 408 )
-rotation = 0.133205
-ParentPart = NodePath("../Bein2")
-RotSpeed = 2.5
-
-[node name="PartRoot" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 179, 328 )
-rotation = -1.56776
+[node name="AnimalPhysics" parent="." instance=ExtResource( 2 )]
+position = Vector2( 260, 389 )
+AnimalPath = NodePath("../Animal")

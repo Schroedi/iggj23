@@ -60,6 +60,7 @@ public class bodypart : RigidBody2D
         if (poly != null)
         {
             this.GlobalPosition = poly.Origin;
+            this.GlobalRotation = poly.Rot;
             SpritePolygon.Polygon = poly.Poly.ToArray();
             SpritePolygon.Texture = poly.Texture;
             SpritePolygon.TextureRotation = poly.TexRot;

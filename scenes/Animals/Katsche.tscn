@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Katze Schwanz 3.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Katze Schwanz 2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cuteness_Katze Koerper.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Cuteness_Katze Schwanz 1.png" type="Texture" id=6]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -26, -88 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 5 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 188.772, 135.208, 178.772, 252.208, 104.772, 258.208, 97.7718, 205.208, 102.772, 134.208, 118.772, 68.2083, 178.772, 74.2083 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 27, 171 )
+rotation = -1.17276
+offset = Vector2( -0.523102, -3.6191 )
+texture = ExtResource( 6 )
+texture_offset = Vector2( 24.288, 61.809 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -3.4769, -53.3809, -15.4769, -40.3809, -18.4769, -14.3809, -9, 14, -2, 21, 12, 9, 15.5231, -15.3809, 12.5231, -42.3809 )
+script = ExtResource( 2 )
+RotSpeed = 2.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D"]
+position = Vector2( -1.23698, -49.3809 )
+offset = Vector2( 0.532806, -2.81315 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 18.341, 68.9 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -1.91151, -61.864, -8.12329, -55.9977, -14.2968, -43.1449, -14.0659, -19.3763, -13.7828, -3.22328, -11.1218, 10.8451, 0.809677, 13.4218, 10.8031, 11.3894, 14.6472, -13.0078, 17.8626, -41.4799, 15.4043, -59.3816, 7.16013, -63.5088 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D/Polygon2D2"]
+position = Vector2( 6.81845, -56.0224 )
+rotation = 1.17276
+offset = Vector2( -0.523121, -1.61906 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 20.176, 81.854 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -12, -70, -18.4769, -52.3809, -17, -27, -14.4769, -0.380936, -9.47688, 5.61906, 1, 13, 12.5231, 7.61906, 26, -61, 12.5231, -78.3809, -5.47688, -76.3809 )
+script = ExtResource( 2 )
+RotSpeed = 1.8

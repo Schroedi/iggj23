@@ -10,6 +10,7 @@ public class AnimalDataSetup
         public float RotLimit = 0f;
         public int ParentIndex = -1; // -1 is root
         public Vector2 Origin;
+        public float Rot;
         public Texture Texture;
         public Vector2 TexOffset; 
         public Vector2 TexScale;

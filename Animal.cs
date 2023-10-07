@@ -31,6 +31,7 @@ public class Animal : Node2D
             p.Origin = poly.GlobalPosition;
             p.ParentIndex = parent;
             p.Definition = poly;
+            p.Rot = poly.GlobalRotation;
             p.RotLimit = poly.RotLimit;
             p.RotSpeed = poly.RotSpeed;
             p.Poly = poly.Polygon.ToList();

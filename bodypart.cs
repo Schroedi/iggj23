@@ -30,6 +30,12 @@ public class bodypart : RigidBody2D
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet5.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet6.png"),
     };
+    private static Texture[] FreshWoundTextures = new[]{
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh1.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh2.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh3.png"),
+        (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh4.png"),
+    };
 
     public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
     {
@@ -92,21 +98,40 @@ public class bodypart : RigidBody2D
             //GetParent().CallDeferred("add_child", Joint);
         }
 
-        if (poly.BloodySegments.Count > 0)
-        {
-            foreach (var tex in DropletTextures)
-                foreach (var bs in poly.BloodySegments)
-                {
-                    var blood = bloodPScence.Instance<CPUParticles2D>();
+        foreach (var tex in DropletTextures)
+            foreach (var bs in poly.BloodySegments)
+            {
+                var blood = bloodPScence.Instance<CPUParticles2D>();
 
-                    Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
-                    blood.GlobalPosition = poly.Poly[bs] + dir * 0.5f;
-                    blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
-                    blood.Rotation = dir.Angle();
-                    blood.Texture = tex;
-                    this.AddChild(blood);
-                }
-        }
+                var p0 = poly.Poly[bs];
+                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+
+                Vector2 dir = p1 - p0;
+                blood.GlobalPosition = p0 + dir * 0.5f;
+                blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
+                blood.Rotation = dir.Angle();
+                blood.Texture = tex;
+                this.AddChild(blood);
+            }
+
+        if (false)
+            foreach (var bs in poly.BloodySegments)
+            {
+                var p0 = poly.Poly[bs];
+                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+
+                var tex = FreshWoundTextures[0]; // TODO
+
+                Vector2 dir = p1 - p0;
+
+                var texR = new TextureRect();
+                texR.Texture = tex;
+                texR.RectGlobalPosition = (p0 + p1) / 2;
+                texR.RectRotation = dir.Angle();
+                texR.RectPivotOffset = tex.GetSize() / 2;
+                // texR.RectScale = 
+                this.AddChild(texR);
+            }
     }
 
     void OnInput(Node viewport, InputEvent @event, int shapeIdx)

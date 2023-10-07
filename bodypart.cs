@@ -160,8 +160,8 @@ public class bodypart : RigidBody2D
 
         if (Joint != null)
         {
-            var targetAngle = Math.Cos(runtime * RotSpeed);
-            AngularVelocity = (float)targetAngle * RotLimit;
+            // var targetAngle = Math.Cos(runtime * RotSpeed);
+            // AngularVelocity = (float)targetAngle * RotLimit;
         }
     }
 }

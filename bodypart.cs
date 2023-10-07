@@ -22,6 +22,9 @@ public class bodypart : RigidBody2D
     {
         poly = bp;
         parentPart = pp;
+
+        RotSpeed = bp.RotSpeed;
+        RotLimit = bp.RotLimit;
     }
 
     public bodypart()

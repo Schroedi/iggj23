@@ -7,8 +7,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Stats" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+margin_left = 665.0
+margin_top = 33.0
+margin_right = 705.0
+margin_bottom = 73.0
 
 [node name="Cuteness" type="Label" parent="Stats"]
 margin_right = 40.0
@@ -22,3 +25,57 @@ margin_right = 290.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 1 )
 text = "1337"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 10.0
+margin_right = 162.0
+margin_bottom = 75.0
+text = "CUT/ENESS
+by Frankenstein's Finest
+
+1. Cut apart your Wares
+2. Assembly your Delivery
+3. Let it reach the Goal"
+
+[node name="lPhase1" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 479.0
+margin_right = 397.0
+margin_bottom = 501.0
+text = "Phase 1: Click+Drag to cut apart your wares."
+
+[node name="lPhase2" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 479.0
+margin_right = 397.0
+margin_bottom = 501.0
+text = "Phase 2: drag parts assembly the living delivery. Parts automatically connect at cuts."
+
+[node name="lPhase3" type="Label" parent="."]
+margin_left = 18.0
+margin_top = 479.0
+margin_right = 397.0
+margin_bottom = 501.0
+text = "Phase 3: watch your creation reach the goal (or go back to the cutting board)."
+
+[node name="btnReset" type="Button" parent="."]
+margin_left = 210.0
+margin_top = 13.0
+margin_right = 325.0
+margin_bottom = 61.0
+text = "Reset Level"
+
+[node name="btnPhase2" type="Button" parent="."]
+margin_left = 345.0
+margin_top = 13.0
+margin_right = 460.0
+margin_bottom = 61.0
+text = "To Assembly"
+
+[node name="btnPhase3" type="Button" parent="."]
+margin_left = 477.0
+margin_top = 13.0
+margin_right = 592.0
+margin_bottom = 61.0
+text = "To Delivery"

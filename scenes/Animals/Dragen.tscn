@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Drache Schwanz 1.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Drache Koerper.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cuteness_Drache Kiefer.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Cuteness_Drache Kopf.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Cuteness_Drache Schwanz 2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Cuteness_Drache Bein Vorne Vorn 2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Cuteness_Drache Bein Vorne Vorn 1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Cuteness_Drachen Bein Hinten Vorn 2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Cuteness_Drache Bein Hinten Vorn 1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Cuteness_Drache Fluegel Vorn.png" type="Texture" id=12]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -125, -117 )
+offset = Vector2( 1.082, -0.208 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 21.307, 30.936 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 7, -27, 86, -29, 112, -21, 118, -3, 115, 21, 55, 49, -10, 36, -24, 6, -14, -19 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 100, -12 )
+offset = Vector2( 4.4769, 7.3809 )
+texture = ExtResource( 5 )
+texture_offset = Vector2( 24.288, 53.566 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -17, -21, 9, -53, 34, -61, 77, -35, 89, -5, 57, 2, -3, 8, -20, 0 )
+script = ExtResource( 2 )
+RotSpeed = 2.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D"]
+position = Vector2( 36, -53 )
+offset = Vector2( -2.70418, 1.80594 )
+texture = ExtResource( 6 )
+texture_offset = Vector2( 48.667, 78.336 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -18, 7, -49, -12, -47, -43, -27, -67, 28, -78, 65, -57, 99, -14, 87, 34, 62, 51 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( -4, 0 )
+offset = Vector2( -32.776, 55.049 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 53.471, 26.945 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -22, -61, -18, -81, 41, -80, 44, -45, 36, -38, -18, -45 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D/Polygon2D2"]
+position = Vector2( -46, -6 )
+offset = Vector2( -32.776, 55.049 )
+texture = ExtResource( 7 )
+texture_offset = Vector2( 102.47, 22.85 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -68.224, -54.049, -21.224, -74.049, 40.776, -71.049, 44, -45, 39.776, -42.049, -16.224, -36.049 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 83, 22 )
+texture = ExtResource( 9 )
+texture_offset = Vector2( 17.346, 8.634 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -11, -1, -6, 44, 14, 43, 17, 30, 11, -6 )
+script = ExtResource( 2 )
+RotSpeed = 2.346
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D/Polygon2D4"]
+position = Vector2( 3, 40 )
+texture = ExtResource( 8 )
+texture_offset = Vector2( 22.127, 8.634 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -12, -4, -21, 31, -12, 36, 12, 42, 22, 38, 33, 31, 32, 22, 14, -5 )
+script = ExtResource( 2 )
+RotSpeed = 2.346
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 3, 22 )
+texture = ExtResource( 11 )
+texture_offset = Vector2( 18.346, 13.818 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -9, 4, -8, 37, 16, 41, 18, 21, 12, -7 )
+script = ExtResource( 2 )
+RotSpeed = 2.346
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D/Polygon2D5"]
+position = Vector2( 3, 35 )
+texture = ExtResource( 10 )
+texture_offset = Vector2( 22.127, 8.634 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -10, -1, -18, 29, -12, 36, 12, 42, 22, 38, 29, 33, 29, 24, 13, -1 )
+script = ExtResource( 2 )
+RotSpeed = 2.346
+
+[node name="Polygon2D6" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 52, -16 )
+texture = ExtResource( 12 )
+texture_offset = Vector2( 32.125, 101.639 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -23, -91, -20, -26, -8, 11, 3, 11, 31, -21, 29, -68, 1, -94, -22, -92 )
+script = ExtResource( 2 )
+RotSpeed = 2.346

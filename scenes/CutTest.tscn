@@ -9,7 +9,7 @@ extents = Vector2( 873, 206.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 143.5, 315 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

@@ -1,7 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/AnimalPhysics.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/AnimalA.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Cutter.cs" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -29,14 +27,6 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 1105, 271 )
 shape = SubResource( 2 )
-
-[node name="Animal" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 627, 198 )
-
-[node name="AnimalPhysics" parent="." instance=ExtResource( 2 )]
-position = Vector2( 260, 389 )
-AnimalPath = NodePath("../Animal")
 
 [node name="Cutter" type="Line2D" parent="."]
 visible = false

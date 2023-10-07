@@ -20,3 +20,5 @@ polygon = PoolVector2Array( -35, -24, 72, -39, 95, 39, 51, 92, -31, 85 )
 
 [node name="Dragging" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Connectors" type="Node2D" parent="."]

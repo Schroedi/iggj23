@@ -39,4 +39,5 @@ end_cap_mode = 2
 script = ExtResource( 4 )
 
 [node name="RayCast" type="RayCast2D" parent="Cutter"]
+visible = false
 collision_mask = 16

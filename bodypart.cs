@@ -18,6 +18,9 @@ public class bodypart : RigidBody2D
     private CollisionPolygon2D CollisionPolygon;
 
     private AnimalDataSetup.BodyPart poly;
+    
+    private Node2D Connectors;
+    PackedScene connectorScene = ResourceLoader.Load<PackedScene>("res://scenes/Connector.tscn");
 
     private static Texture[] DropletTextures = new[]{
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet1.png"),
@@ -54,6 +57,8 @@ public class bodypart : RigidBody2D
     {
         // otherwise dragging can fail
         CanSleep = false;
+        
+        Connectors = GetNode<Node2D>("Connectors");
 
         var bloodPScence = GD.Load<PackedScene>("res://BloodParticles.tscn");
 
@@ -130,6 +135,21 @@ public class bodypart : RigidBody2D
             
             // FIXME
             this.AddChild(texR);
+        }
+
+        foreach (var bs in poly.BloodySegments)
+        {
+            var p0 = poly.Poly[bs];
+            var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+
+            Vector2 dir = p1 - p0;
+                
+            // add connection points
+            var c = connectorScene.Instance<Connector>();
+            c.GlobalPosition = p0 + dir * 0.5f;
+            c.Animal = Animal;
+            c.Normal = dir.Normalized();
+            Connectors.AddChild(c);
         }
     }
 

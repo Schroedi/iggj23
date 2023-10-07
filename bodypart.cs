@@ -32,6 +32,8 @@ public class bodypart : RigidBody2D
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh4.png"),
     };
 
+    private static float[] WoundTextureScalings = new[] { 1.25f, 1.27f, 1.175f, 1.12f };
+
     public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
     {
         poly = bp;
@@ -104,17 +106,25 @@ public class bodypart : RigidBody2D
         {
             var p0 = poly.Poly[bs];
             var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
-
-            var tex = FreshWoundTextures[0]; // TODO
-
             Vector2 dir = p1 - p0;
+            float len = dir.Length();
+            int idx = (int)Math.Round(len / 50);
+            if(idx<0)
+                idx = 0;
+            if(idx>=FreshWoundTextures.Length)
+                idx = FreshWoundTextures.Length-1;
+            idx = 3;
+            var tex = FreshWoundTextures[idx]; // TODO
 
-            var texR = new TextureRect();
+         
+            GD.Print(dir.Length());
+            var texR = new Sprite();
             texR.Texture = tex;
-            texR.RectGlobalPosition = (p0 + p1) / 2;
-            texR.RectRotation = dir.Angle();
-            texR.RectPivotOffset = tex.GetSize() / 2;
-            // texR.RectScale = 
+            float scl = len*WoundTextureScalings[idx]/ tex.GetSize().y;
+            texR.Position = p0+dir/2;
+            texR.Rotation = dir.Angle()+Mathf.Pi/2;
+            texR.Scale = new Vector2(scl,scl);
+            
             // FIXME
             this.AddChild(texR);
         }

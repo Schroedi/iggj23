@@ -177,8 +177,8 @@ public static class AnimalCutter
 
                 if (d0 > 0 && d1 <= 0)
                 {
-                    newPart.Poly.Add(IntersectionPoint());
                     newPart.BloodySegments.Add(newPart.Poly.Count);
+                    newPart.Poly.Add(IntersectionPoint());
                 }
 
                 if (d0 <= 0 && d1 > 0)

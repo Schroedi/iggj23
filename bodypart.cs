@@ -17,11 +17,13 @@ public class bodypart : RigidBody2D
 
     private AnimalDataSetup.BodyPart poly;
 
+
     public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
     {
         poly = bp;
         parentPart = pp;
     }
+
     public bodypart()
     {
     }
@@ -32,6 +34,8 @@ public class bodypart : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        var bloodPScence = GD.Load<PackedScene>("res://BloodParticles.tscn");
+
         SpritePolygon = GetNode<Polygon2D>("SpritePolygon");
         CollisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon");
         if (poly != null)
@@ -43,7 +47,6 @@ public class bodypart : RigidBody2D
             SpritePolygon.TextureOffset = poly.TexOffset;
             SpritePolygon.TextureScale = poly.TexScale;
             CollisionPolygon.Polygon = poly.Poly.ToArray();
-          
         }
 
         if (ParentPart == null && parentPart != null)
@@ -63,6 +66,20 @@ public class bodypart : RigidBody2D
 
             GetParent().CallDeferred("add_child", Joint);
         }
+
+        if (poly.BloodySegments.Count > 0)
+        {
+            foreach (var bs in poly.BloodySegments)
+            {
+                var blood = bloodPScence.Instance<CPUParticles2D>();
+                
+                Vector2 dir = poly.Poly[(bs + 1) % poly.Poly.Count] - poly.Poly[bs];
+                blood.GlobalPosition = poly.Poly[bs]+dir*0.5f;
+                blood.EmissionRectExtents= new Vector2(dir.Length()/2,0);
+                blood.Rotation = dir.Angle();
+                this.AddChild(blood);
+            }
+        }
     }
 
     public override void _EnterTree()
@@ -80,5 +97,6 @@ public class bodypart : RigidBody2D
             var targetAngle = Math.Cos(runtime * RotSpeed);
             AngularVelocity = (float)targetAngle * RotLimit;
         }
+        
     }
 }

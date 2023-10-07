@@ -31,7 +31,7 @@ public class Cutter : Line2D
                 {
                     if (_raycast.GetCollider() is bodypart part)
                     {
-                        CutAnimal(part.Animal);
+                        CutAnimal(part);
                     }
                     else
                     {
@@ -53,8 +53,9 @@ public class Cutter : Line2D
         base._Input(@event);
     }
 
-    private void CutAnimal(Animal animal)
+    private void CutAnimal(bodypart bodypart)
     {
+        var animal = bodypart.Animal;
         var cut = AnimalCutter.Cut(animal.Setup, new Vector2(0, 400), new Vector2(1000, 400));
         var parent = animal.GetParent();
         foreach (var a in cut.NewAnimals)
@@ -64,7 +65,7 @@ public class Cutter : Line2D
             parent.AddChild(ap);
         }
         // delete animal
-        animal.QueueFree();
+        bodypart.GetParent().QueueFree();
     }
 
     // Called when the node enters the scene tree for the first time.

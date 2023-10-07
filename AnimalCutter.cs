@@ -43,7 +43,8 @@ public static class AnimalCutter
                 }
 
                 parentOf.Add(p, parentPart);
-                childrenOf[parentPart].Add(p);
+                if (parentPart != null)
+                    childrenOf[parentPart].Add(p);
             }
         }
 
@@ -64,9 +65,13 @@ public static class AnimalCutter
                 // collect connected parts
                 void Visit(AnimalDataSetup.BodyPart part)
                 {
+                    if (part == null)
+                        return;
                     if (visited.Contains(part))
                         return;
 
+                    // GD.Print(part);
+                    // GD.Print(newPartIndex.ContainsKey(part));
                     newPartIndex.Add(part, newAnimal.Parts.Count);
                     newAnimal.Parts.Add(part);
                     visited.Add(part);
@@ -80,7 +85,7 @@ public static class AnimalCutter
 
                 // rewrite parent indices
                 foreach (var pp in newAnimal.Parts)
-                    pp.ParentIndex = parentOf.ContainsKey(pp) ? newPartIndex[parentOf[pp]] : -1;
+                    pp.ParentIndex = parentOf.ContainsKey(pp) && parentOf[pp] != null ? newPartIndex[parentOf[pp]] : -1;
 
                 res.NewAnimals.Add(newAnimal);
             }
@@ -112,6 +117,7 @@ public static class AnimalCutter
             pArea += Mathf.Abs((p1 - p).Cross(p0 - p));
         }
 
+        // GD.Print(Math.Abs(polyArea - pArea));
         return Math.Abs(polyArea - pArea) < 0.1;
     }
 
@@ -177,8 +183,8 @@ public static class AnimalCutter
 
                 if (d0 > 0 && d1 <= 0)
                 {
-                    newPart.Poly.Add(IntersectionPoint());
                     newPart.BloodySegments.Add(newPart.Poly.Count);
+                    newPart.Poly.Add(IntersectionPoint());
                 }
 
                 if (d0 <= 0 && d1 > 0)

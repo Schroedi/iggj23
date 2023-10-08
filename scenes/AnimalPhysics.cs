@@ -29,7 +29,7 @@ public class AnimalPhysics : Node2D
     public override void _Ready()
     {
         var bpScenes = GD.Load<PackedScene>("res://scenes/bodypart.tscn");
-        
+
         if (AnimalSetup == null)
         {
             if (AnimalPath != null && Animal == null)
@@ -41,7 +41,7 @@ public class AnimalPhysics : Node2D
         foreach (var part in AnimalSetup.Parts)
         {
             var node = bpScenes.Instance<bodypart>();
-            node.Init(part, part.ParentIndex == -1 ? null : Parts[part.ParentIndex]);
+            node.Init(part, part.ParentIndex == -1 ? null : Parts[part.ParentIndex], AnimalSetup);
             Parts.Add(node);
             this.CallDeferred("add_child", node);
         }

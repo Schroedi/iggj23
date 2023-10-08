@@ -24,6 +24,7 @@ public class Cutter : Line2D
             else
             {
                 // get animal on cut line
+                GD.Print("CUT ME INTO PIECES");
                 _raycast.GlobalPosition = touch.Position;
                 _raycast.CastTo = _startPos - touch.Position;
                 _raycast.ForceRaycastUpdate();
@@ -35,7 +36,7 @@ public class Cutter : Line2D
                     }
                     else
                     {
-                        GD.PrintErr("Tried to cot a non animal: " + _raycast.GetCollider().GetType().Name);
+                        GD.PrintErr("Tried to cut a non animal: " + _raycast.GetCollider().GetType().Name);
                     }
 
                 }
@@ -55,13 +56,14 @@ public class Cutter : Line2D
 
     private void CutAnimal(bodypart bodypart, Vector2 from, Vector2 to)
     {
-        var animal = bodypart.Animal;
-        var cut = AnimalCutter.Cut(animal.Setup, from, to);
-        var parent = animal.GetParent();
+        var cut = AnimalCutter.Cut(bodypart.CurrentSetup, from, to);
+        var parent = bodypart.GetParent().GetParent();
+        GD.Print($"got {cut.NewAnimals.Count} new animals");
         foreach (var a in cut.NewAnimals)
         {
-            a.DebugPrint();
+            // a.DebugPrint();
             var ap = new AnimalPhysics() { AnimalSetup = a };
+            ap.Name = "Cut Up Animal";
             parent.AddChild(ap);
         }
         // delete animal

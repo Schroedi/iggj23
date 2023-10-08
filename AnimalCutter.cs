@@ -251,10 +251,6 @@ public static class AnimalCutter
             distances[i] = -distances[i];
         var part1 = ExtractPositivePart();
         
-        // Otherwise I can't cut again
-        part1.Animal = part.Animal;
-        part0.Animal = part.Animal;
-
         return new List<AnimalDataSetup.BodyPart> { part0, part1 };
     }
 }

@@ -11,6 +11,8 @@ public class bodypart : RigidBody2D
     
     public Animal Animal { get { return poly.Animal; } }
 
+    public AnimalDataSetup CurrentSetup;
+
     private bodypart parentPart;
     private PinJoint2D Joint;
     private double runtime = 0f;
@@ -39,8 +41,9 @@ public class bodypart : RigidBody2D
 
     private static float[] WoundTextureScalings = new[] { 1.25f, 1.27f, 1.175f, 1.12f };
 
-    public void Init(AnimalDataSetup.BodyPart bp, bodypart pp)
+    public void Init(AnimalDataSetup.BodyPart bp, bodypart pp, AnimalDataSetup setup)
     {
+        CurrentSetup = setup;
         poly = bp;
         parentPart = pp;
 
@@ -125,7 +128,7 @@ public class bodypart : RigidBody2D
             var tex = FreshWoundTextures[idx]; // TODO
 
          
-            GD.Print(dir.Length());
+            // GD.Print(dir.Length());
             var texR = new Sprite();
             texR.Texture = tex;
             float scl = len*WoundTextureScalings[idx]/ tex.GetSize().y;

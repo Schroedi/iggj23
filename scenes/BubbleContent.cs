@@ -48,6 +48,9 @@ public class BubbleContent : Node2D
                 LabelScore.Text = $"+ {score}";
                 LabelScore.Visible = true;
                 state.Score += score;
+
+                if (state.TimeInThrowing < 30)
+                    state.TimeToLive += score / 100f;
             }
         }
 

@@ -26,10 +26,15 @@ public class GameState : Node2D
     public override void _Process(float delta)
     {
         if (IsThrowing)
+        {
             TimeInThrowing += delta;
+            TimeToLive -= delta;
+        }
     }
 
     public float TimeInThrowing = 0f;
+
+    public float TimeToLive = 20;
 
     public int Score = 0;
 

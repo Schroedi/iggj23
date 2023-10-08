@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/TextBold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/DebugText.gd" type="Script" id=2]
 [ext_resource path="res://scenes/btnReset.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Hud.cs" type="Script" id=4]
+[ext_resource path="res://scenes/lScore.cs" type="Script" id=5]
+[ext_resource path="res://scenes/lTime.cs" type="Script" id=6]
 
 [node name="Hud" type="Control"]
 anchor_right = 1.0
@@ -35,6 +37,7 @@ margin_left = 8.0
 margin_top = 10.0
 margin_right = 162.0
 margin_bottom = 75.0
+rect_scale = Vector2( 2, 2 )
 text = "CUT/ENESS
 by Frankenstein's Finest
 
@@ -43,46 +46,72 @@ by Frankenstein's Finest
 3. Make the Children happy"
 
 [node name="lPhase1" type="Label" parent="."]
-margin_left = 18.0
-margin_top = 1041.0
-margin_right = 397.0
-margin_bottom = 1063.0
+margin_left = 577.0
+margin_top = 15.0
+margin_right = 956.0
+margin_bottom = 37.0
+rect_scale = Vector2( 2, 2 )
 text = "Phase 1: Click+Drag to cut apart your raw material."
 
 [node name="lPhase2" type="Label" parent="."]
-margin_left = 18.0
-margin_top = 1041.0
-margin_right = 577.0
-margin_bottom = 1063.0
+margin_left = 577.0
+margin_top = 15.0
+margin_right = 1136.0
+margin_bottom = 37.0
+rect_scale = Vector2( 2, 2 )
 text = "Phase 2: drag parts to assemble the living creation. Parts automatically connect at cuts."
 
 [node name="lPhase3" type="Label" parent="."]
-margin_left = 18.0
-margin_top = 1041.0
-margin_right = 682.0
-margin_bottom = 1063.0
+margin_left = 577.0
+margin_top = 15.0
+margin_right = 1241.0
+margin_bottom = 37.0
+rect_scale = Vector2( 2, 2 )
 text = "Phase 3: watch your creation make as many children happy as possible (or go back to the cutting board)."
 
+[node name="lScore" type="Label" parent="."]
+margin_left = 748.0
+margin_top = 79.0
+margin_right = 844.0
+margin_bottom = 101.0
+rect_scale = Vector2( 4, 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Score: 17"
+align = 1
+script = ExtResource( 5 )
+
+[node name="lTime" type="Label" parent="."]
+margin_left = 749.0
+margin_top = 146.0
+margin_right = 845.0
+margin_bottom = 168.0
+rect_scale = Vector2( 4, 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Time to Live: 30s"
+script = ExtResource( 6 )
+
 [node name="btnReset" type="Button" parent="."]
-margin_left = 210.0
-margin_top = 13.0
-margin_right = 325.0
-margin_bottom = 61.0
+margin_left = 186.0
+margin_top = 239.0
+margin_right = 301.0
+margin_bottom = 287.0
 text = "Reset Level"
 script = ExtResource( 3 )
 
 [node name="btnPhase2" type="Button" parent="."]
-margin_left = 345.0
-margin_top = 13.0
-margin_right = 460.0
-margin_bottom = 61.0
+margin_left = 27.0
+margin_top = 241.0
+margin_right = 142.0
+margin_bottom = 289.0
 text = "To Assembly"
 
 [node name="btnPhase3" type="Button" parent="."]
-margin_left = 477.0
-margin_top = 13.0
-margin_right = 592.0
-margin_bottom = 61.0
+margin_left = 27.0
+margin_top = 307.0
+margin_right = 142.0
+margin_bottom = 355.0
 text = "To the Parade"
 
 [node name="Label2" type="Label" parent="."]

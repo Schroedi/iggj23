@@ -138,15 +138,13 @@ current = true
 script = ExtResource( 12 )
 
 [node name="AnimalCat" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 183, 315 )
+position = Vector2( 322, 482 )
 
 [node name="AnimalPhysicsCat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalCat")
 
 [node name="AnimalDragon" parent="." instance=ExtResource( 5 )]
-visible = false
 position = Vector2( 610, 413 )
 
 [node name="AnimalPhysicsDragon" parent="." instance=ExtResource( 3 )]
@@ -154,7 +152,6 @@ position = Vector2( 348, 409 )
 AnimalPath = NodePath("../AnimalDragon")
 
 [node name="AnimalFant" parent="." instance=ExtResource( 15 )]
-visible = false
 position = Vector2( 1063, 289 )
 
 [node name="AnimalPhysicsFant" parent="." instance=ExtResource( 3 )]
@@ -162,7 +159,6 @@ position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalFant")
 
 [node name="AnimalOwl" parent="." instance=ExtResource( 16 )]
-visible = false
 position = Vector2( 1625, 291 )
 
 [node name="AnimalPhysics" parent="." instance=ExtResource( 3 )]
@@ -170,23 +166,20 @@ position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalOwl")
 
 [node name="AnimalFish" parent="." instance=ExtResource( 17 )]
-visible = false
-position = Vector2( 259, 604 )
+position = Vector2( 966, 904 )
 
 [node name="AnimalPhysics2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalFish")
 
 [node name="AnimalBunny" parent="." instance=ExtResource( 21 )]
-visible = false
-position = Vector2( 619, 703 )
+position = Vector2( 562, 750 )
 
 [node name="AnimalPhysics3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalBunny")
 
 [node name="AnimalCrab" parent="." instance=ExtResource( 18 )]
-visible = false
 position = Vector2( 1686, 566 )
 
 [node name="AnimalPhysics4" parent="." instance=ExtResource( 3 )]
@@ -194,7 +187,6 @@ position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalCrab")
 
 [node name="AnimalSquirrel" parent="." instance=ExtResource( 19 )]
-visible = false
 position = Vector2( 1008, 714 )
 
 [node name="AnimalPhysics5" parent="." instance=ExtResource( 3 )]
@@ -202,7 +194,6 @@ position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalSquirrel")
 
 [node name="AnimalBear" parent="." instance=ExtResource( 20 )]
-visible = false
 position = Vector2( 1450, 920 )
 
 [node name="AnimalPhysics6" parent="." instance=ExtResource( 3 )]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://scenes/Animals/Otter.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/Animals/Pedro.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Animals/Hase.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Backdrop_Room Active.png" type="Texture" id=22]
+[ext_resource path="res://scenes/BackdropRoom.cs" type="Script" id=23]
+[ext_resource path="res://scenes/BackdropRoom2.cs" type="Script" id=24]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -77,6 +80,13 @@ script = ExtResource( 11 )
 position = Vector2( 983, 691 )
 scale = Vector2( 0.525758, 0.480365 )
 texture = ExtResource( 14 )
+script = ExtResource( 23 )
+
+[node name="BackdropRoom2" type="Sprite" parent="."]
+position = Vector2( 983, 691 )
+scale = Vector2( 0.525758, 0.480365 )
+texture = ExtResource( 22 )
+script = ExtResource( 24 )
 
 [node name="Arena" parent="." instance=ExtResource( 13 )]
 position = Vector2( -265, 1496 )

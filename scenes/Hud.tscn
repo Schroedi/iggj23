@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://fonts/TextBold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/DebugText.gd" type="Script" id=2]
+[ext_resource path="res://scenes/btnReset.gd" type="Script" id=3]
 
 [node name="Hud" type="Control"]
 anchor_right = 1.0
@@ -66,6 +67,7 @@ margin_top = 13.0
 margin_right = 325.0
 margin_bottom = 61.0
 text = "Reset Level"
+script = ExtResource( 3 )
 
 [node name="btnPhase2" type="Button" parent="."]
 margin_left = 345.0
@@ -87,3 +89,5 @@ margin_top = 27.0
 margin_right = 732.0
 margin_bottom = 41.0
 script = ExtResource( 2 )
+
+[connection signal="pressed" from="btnReset" to="btnReset" method="_on_btnReset_pressed"]

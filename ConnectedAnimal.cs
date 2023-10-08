@@ -8,6 +8,7 @@ public class ConnectedAnimal
     public List<AnimalPhysics> AllAnimals = new List<AnimalPhysics>();
     public float TotalArea = 0f;
 
+    public Dictionary<AnimalType, int> AnimalParts = new Dictionary<AnimalType, int>();
 
 
     public static List<ConnectedAnimal> ComputeAnimals(Node2D root)
@@ -71,6 +72,15 @@ public class ConnectedAnimal
                         Visit(app);
                 }
                 Visit(apRoot);
+
+                // compute percentages
+                foreach (var ap in ca.AllAnimals)
+                {
+                    var scorePart = Mathf.RoundToInt(100f * ap.TotalArea / ca.TotalArea);
+                    if (!ca.AnimalParts.ContainsKey(ap.AnimalType))
+                        ca.AnimalParts[ap.AnimalType] = scorePart;
+                    else ca.AnimalParts[ap.AnimalType] += scorePart;
+                }
 
                 animals.Add(ca);
             }

@@ -234,6 +234,7 @@ public class bodypart : RigidBody2D
         {
             LinearDamp = 0.1f;
             AngularDamp = 0.1f;
+            Friction = 0.6f;
         }
         else
         {

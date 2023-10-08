@@ -45,10 +45,10 @@ text = "Goal"
 position = Vector2( -1588, 868 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2023, 2077 )
+position = Vector2( 2051, 2071 )
 
 [node name="Node2D3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 5635, 3283 )
+position = Vector2( 5690, 3274 )
 
 [node name="Node2D4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 9263, 4498 )
+position = Vector2( 9329, 4477 )

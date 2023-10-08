@@ -17,8 +17,24 @@ public class Connector : Area2D
 
     public override void _PhysicsProcess(float delta)
     {
+        if (!GameState.Current(this).IsStitching)
+        {
+            _snapIndicator.Visible = false;
+            return;
+        }
+        
         bool picking = _globals.Get("Picked") as bool? == true;
-        _snapIndicator.Visible = picking && this.GetOverlappingAreas().Count > 0;
+        var doesOverlap = false;
+        var p = GetParent();
+        foreach (var a in GetOverlappingAreas())
+        {
+            var area = a as Area2D;
+            if (p == area.GetParent()) continue;
+            doesOverlap = true;
+            break;
+        }
+        
+        _snapIndicator.Visible = picking && doesOverlap;
     }
 
 }

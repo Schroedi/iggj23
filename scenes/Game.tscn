@@ -99,17 +99,18 @@ position = Vector2( 464, 224 )
 texture = ExtResource( 9 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.8, 0.8 )
 
-[node name="Town" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 473, 335 )
-texture = ExtResource( 8 )
+[node name="TownFar" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 497, 218 )
+texture = ExtResource( 7 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="TownFar" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( 496, 261 )
-texture = ExtResource( 7 )
+[node name="Town" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 473, 335 )
+texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground"]
 autoplay = "wiggle"

@@ -60,7 +60,7 @@ public class Cutter : Line2D
         var parent = animal.GetParent();
         foreach (var a in cut.NewAnimals)
         {
-            a.DebugPrint();
+            //a.DebugPrint();
             var ap = new AnimalPhysics() { AnimalSetup = a };
             parent.AddChild(ap);
         }

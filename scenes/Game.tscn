@@ -141,21 +141,21 @@ script = ExtResource( 12 )
 [node name="Previews" parent="." instance=ExtResource( 25 )]
 
 [node name="AnimalCat" parent="." instance=ExtResource( 4 )]
-position = Vector2( 322, 482 )
+position = Vector2( 264, 657 )
 
 [node name="AnimalPhysicsCat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalCat")
 
 [node name="AnimalDragon" parent="." instance=ExtResource( 5 )]
-position = Vector2( 610, 413 )
+position = Vector2( 766, 549 )
 
 [node name="AnimalPhysicsDragon" parent="." instance=ExtResource( 3 )]
 position = Vector2( 348, 409 )
 AnimalPath = NodePath("../AnimalDragon")
 
 [node name="AnimalFant" parent="." instance=ExtResource( 15 )]
-position = Vector2( 1063, 289 )
+position = Vector2( 1190, 308 )
 
 [node name="AnimalPhysicsFant" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )
@@ -169,7 +169,7 @@ position = Vector2( 335, 536 )
 AnimalPath = NodePath("../AnimalOwl")
 
 [node name="AnimalFish" parent="." instance=ExtResource( 17 )]
-position = Vector2( 966, 904 )
+position = Vector2( 872, 861 )
 
 [node name="AnimalPhysics2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 335, 536 )

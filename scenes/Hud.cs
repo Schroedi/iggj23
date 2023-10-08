@@ -28,4 +28,14 @@ public class Hud : Control
         GD.Print("Phase 3");
         GameState.Current(this).StartPhase3();
     }
+
+    public override void _Process(float delta)
+    {
+        var gs = GameState.Current(this);
+        GetNode<Button>("btnPhase2").Visible = gs.IsCutting;
+        GetNode<Button>("btnPhase3").Visible = gs.IsStitching;
+        GetNode<Label>("lPhase1").Visible = gs.IsCutting;
+        GetNode<Label>("lPhase2").Visible = gs.IsStitching;
+        GetNode<Label>("lPhase3").Visible = gs.IsThrowing;
+    }
 }

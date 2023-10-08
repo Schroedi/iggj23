@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 873, 206.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 143.5, 315 )
+
+[node name="Node2D2" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 561, 722 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -147, 302 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1107, 312 )
+shape = SubResource( 2 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2( 227, 172 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+position = Vector2( 9, -13 )
+polygon = PoolVector2Array( -9, -31, 52, 7, 7, 60, -57, 26, -43, -10 )
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2( 356, 319 )
+rotation = 0.411637
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D2"]
+position = Vector2( -3, -11 )
+polygon = PoolVector2Array( -9, -31, 50, -22, 35, 49, -27, 46, -43, -10 )
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
+position = Vector2( 281, 177 )
+rotation = -0.513271
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../RigidBody2D2")
+length = 1.0
+initial_offset = 1.0
+
+[node name="GrooveJoint2D2" type="GrooveJoint2D" parent="."]
+position = Vector2( 254, 211 )
+rotation = -0.513271
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../RigidBody2D2")
+length = 1.0
+initial_offset = 1.0

@@ -30,7 +30,7 @@ public class CutTester : Node2D
             // var ap = new AnimalPhysics() { AnimalSetup = animal.Setup };
             // AddChild(ap);
 
-            var cut = AnimalCutter.Cut(animal.Setup, new Vector2(0, 400), new Vector2(1, 0));
+            var cut = AnimalCutter.Cut(animal.Setup, new Vector2(0, 400), new Vector2(1000, 400));
             foreach (var a in cut.NewAnimals)
             {
                 a.DebugPrint();

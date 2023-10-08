@@ -12,5 +12,5 @@ angular_velocity = 30.0
 angular_velocity_random = 1.0
 angle = 180.0
 angle_random = 0.15
-scale_amount = 0.1
-scale_amount_random = 0.03
+scale_amount = 0.06
+scale_amount_random = 0.02

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Elefant Koerper.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Elefant Russel 3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cuteness_Elefant Russel 2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Cuteness_Elefant Kopf.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Cuteness_Elefant Russel 1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Cuteness_Elefant Bein Hinten Vorn.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Cuteness_Elefant Bein Vorn Vorn.png" type="Texture" id=9]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -53, -11 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 100, 80 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 212.772, 10.2083, 219.772, 64.2083, 191.772, 111.208, 150.772, 129.208, 85.7718, 142.208, 54.7718, 129.208, 5.7718, 94.2083, -0.228203, 60.2083, 7.7718, 34.2083, 42.7718, 5.2083, 96.7718, 1.2083, 185.772, 2.2083 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 79, -61 )
+texture = ExtResource( 6 )
+texture_offset = Vector2( 70, 90 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( -27, -55, -38, -34, -48, -8, -53, 10, 25, 18, 76, 13, 93, -1, 90, -34, 77, -73, 50, -84, 6, -84, -12, -72 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D/Polygon2D4"]
+position = Vector2( 77, 6 )
+texture = ExtResource( 7 )
+texture_offset = Vector2( 16.502, 27.71 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -78.3
+polygon = PoolVector2Array( -5, -5, -12, 2, -11, 16, -5, 31, 4, 46, 23, 42, 24, 29, 23, 14, 17, -2, 8, -8 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D6" type="Polygon2D" parent="Polygon2D/Polygon2D4/Polygon2D5"]
+position = Vector2( 12, 40 )
+texture = ExtResource( 5 )
+texture_offset = Vector2( 13.224, 21.882 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -47.0
+polygon = PoolVector2Array( -1, -6, -7, 2, -6, 12, 5, 25, 17, 36, 24, 41, 38, 27, 22, 4, 10, -7 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D7" type="Polygon2D" parent="Polygon2D/Polygon2D4/Polygon2D5/Polygon2D6"]
+position = Vector2( 30, 31 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 13.232, 25.82 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -34.5
+polygon = PoolVector2Array( 0, -6, -7, 2, 1, 13, 76, 63, 89, 39, 15, -4 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D8" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( -31, 45 )
+texture = ExtResource( 8 )
+texture_offset = Vector2( 32.056, 17.4 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -6.3
+polygon = PoolVector2Array( -23, 0, -30, 51, -16, 63, 12, 64, 22, 4, 3, -9 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D9" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 68, 45 )
+texture = ExtResource( 9 )
+texture_offset = Vector2( 32.056, 17.4 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = 3.1
+polygon = PoolVector2Array( -24, 1, -17, 63, -9, 71, 9, 70, 27, 67, 24, 7, 12, -6, -6, -6 )
+script = ExtResource( 2 )
+RotSpeed = 1.8

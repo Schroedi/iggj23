@@ -31,6 +31,7 @@ public class Animal : Node2D
             p.Origin = poly.GlobalPosition;
             p.ParentIndex = parent;
             p.Definition = poly;
+            p.Rot = poly.GlobalRotation;
             p.RotLimit = poly.RotLimit;
             p.RotSpeed = poly.RotSpeed;
             p.Poly = poly.Polygon.ToList();
@@ -38,6 +39,7 @@ public class Animal : Node2D
             p.TexOffset = poly.TextureOffset;
             p.TexScale = poly.TextureScale;
             p.TexRot = poly.TextureRotation;
+            p.Animal = this;
             for (var i = 0; i < p.Poly.Count; ++i)
                 p.Poly[i] += poly.Offset;
 

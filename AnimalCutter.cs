@@ -38,7 +38,7 @@ public static class AnimalCutter
                 AnimalDataSetup.BodyPart parentPart = null;
                 foreach (var pp in newParts[p.ParentIndex])
                 {
-                    if (IsPointInside(p.Origin, pp.Poly, pp.Origin))
+                    if (IsPointInside(p.Origin, pp.Poly, pp.Origin, pp.Rot))
                         parentPart = pp;
                 }
 
@@ -92,9 +92,11 @@ public static class AnimalCutter
         return res;
     }
 
-    private static bool IsPointInside(Vector2 p, List<Vector2> pts, Vector2 ptsOffset)
+    private static bool IsPointInside(Vector2 p, List<Vector2> pts, Vector2 ptsOffset, float rot)
     {
-        p -= ptsOffset; // to local
+        // to local
+        p -= ptsOffset;
+        p = p.Rotated(-rot);
 
         var polyArea = 0.0;
         for (var i = 2; i < pts.Count; ++i)
@@ -121,13 +123,15 @@ public static class AnimalCutter
         return Math.Abs(polyArea - pArea) < 0.1;
     }
 
-    private static bool IntersectsSegPoly(Vector2 p1, Vector2 p2, List<Vector2> pts, Vector2 offset)
+    private static bool IntersectsSegPoly(Vector2 p1, Vector2 p2, List<Vector2> pts, Vector2 offset, float rot)
     {
-        if (IsPointInside(p1, pts, offset) || IsPointInside(p2, pts, offset))
+        if (IsPointInside(p1, pts, offset, rot) || IsPointInside(p2, pts, offset, rot))
             return true;
 
         p1 -= offset;
         p2 -= offset;
+        p1 = p1.Rotated(-rot);
+        p2 = p2.Rotated(-rot);
 
         for (var i = 0; i < pts.Count; ++i)
         {
@@ -161,16 +165,18 @@ public static class AnimalCutter
             return new List<AnimalDataSetup.BodyPart> { part };
 
         // no intersection? -> no cut
-        if (!IntersectsSegPoly(pos0, pos1, part.Poly, part.Origin))
+        if (!IntersectsSegPoly(pos0, pos1, part.Poly, part.Origin, part.Rot))
             return new List<AnimalDataSetup.BodyPart> { part };
 
         var pos = pos0;
-        var dir = (pos1 - pos0).Normalized();
+        var dir = (pos1 - pos0).Rotated(-part.Rot).Normalized();
+
+        var localPos = (pos - part.Origin).Rotated(-part.Rot);
 
         double PlaneDis(Vector2 p)
         {
-            var x = part.Origin.x + p.x - pos.x;
-            var y = part.Origin.y + p.y - pos.y;
+            var x = p.x - localPos.x;
+            var y = p.y - localPos.y;
             var d = x * (double)(dir.y) - y * (double)(dir.x);
             // if (Mathf.Abs(d) < 0.1)
             //     d = 0.1f;
@@ -192,6 +198,7 @@ public static class AnimalCutter
             var newPart = new AnimalDataSetup.BodyPart();
 
             newPart.Origin = part.Origin;
+            newPart.Rot = part.Rot;
             newPart.Definition = part.Definition;
             newPart.RotLimit = part.RotLimit;
             newPart.RotSpeed = part.RotSpeed;
@@ -240,7 +247,7 @@ public static class AnimalCutter
             }
 
             // parent index
-            if (IsPointInside(newPart.Origin, newPart.Poly, newPart.Origin))
+            if (IsPointInside(newPart.Origin, newPart.Poly, newPart.Origin, newPart.Rot))
                 newPart.ParentIndex = part.ParentIndex;
 
             return newPart;
@@ -250,7 +257,7 @@ public static class AnimalCutter
         for (var i = 0; i < distances.Length; ++i)
             distances[i] = -distances[i];
         var part1 = ExtractPositivePart();
-        
+
         return new List<AnimalDataSetup.BodyPart> { part0, part1 };
     }
 }

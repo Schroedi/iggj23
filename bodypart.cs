@@ -8,8 +8,11 @@ public class bodypart : RigidBody2D
     [Export] public float RotSpeed = 1.5f;
 
     [Export] public float RotLimit = 1.5f;
-    
-    public Animal Animal { get { return poly.Animal; } }
+
+    public Animal Animal
+    {
+        get { return poly.Animal; }
+    }
 
     public AnimalDataSetup CurrentSetup;
 
@@ -18,13 +21,15 @@ public class bodypart : RigidBody2D
     private double runtime = 0f;
     private Polygon2D SpritePolygon;
     private CollisionPolygon2D CollisionPolygon;
+    private Node Dragging;
 
     private AnimalDataSetup.BodyPart poly;
-    
+
     private Node2D Connectors;
     PackedScene connectorScene = ResourceLoader.Load<PackedScene>("res://scenes/Connector.tscn");
 
-    private static Texture[] DropletTextures = new[]{
+    private static Texture[] DropletTextures = new[]
+    {
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet1.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet2.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet3.png"),
@@ -32,7 +37,9 @@ public class bodypart : RigidBody2D
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet5.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_Droplet6.png"),
     };
-    private static Texture[] FreshWoundTextures = new[]{
+
+    private static Texture[] FreshWoundTextures = new[]
+    {
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh1.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh2.png"),
         (Texture)ResourceLoader.Load("res://Assets/Cuteness_CutFresh3.png"),
@@ -51,6 +58,12 @@ public class bodypart : RigidBody2D
         RotLimit = bp.RotLimit;
     }
 
+    public void UpdateDataSetupPart()
+    {
+        poly.Origin = GlobalPosition;
+        poly.Rot = GlobalRotation;
+    }
+
     public bodypart()
     {
     }
@@ -60,13 +73,14 @@ public class bodypart : RigidBody2D
     {
         // otherwise dragging can fail
         CanSleep = false;
-        
+
         Connectors = GetNode<Node2D>("Connectors");
 
         var bloodPScence = GD.Load<PackedScene>("res://BloodParticles.tscn");
 
         SpritePolygon = GetNode<Polygon2D>("SpritePolygon");
         CollisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon");
+        Dragging = GetNode<Node>("Dragging");
         if (poly != null)
         {
             this.GlobalPosition = poly.Origin;
@@ -98,20 +112,20 @@ public class bodypart : RigidBody2D
         }
 
         foreach (var tex in DropletTextures)
-            foreach (var bs in poly.BloodySegments)
-            {
-                var blood = bloodPScence.Instance<CPUParticles2D>();
+        foreach (var bs in poly.BloodySegments)
+        {
+            var blood = bloodPScence.Instance<CPUParticles2D>();
 
-                var p0 = poly.Poly[bs];
-                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+            var p0 = poly.Poly[bs];
+            var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
 
-                Vector2 dir = p1 - p0;
-                blood.GlobalPosition = p0 + dir * 0.5f;
-                blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
-                blood.Rotation = dir.Angle();
-                blood.Texture = tex;
-                this.AddChild(blood);
-            }
+            Vector2 dir = p1 - p0;
+            blood.GlobalPosition = p0 + dir * 0.5f;
+            blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
+            blood.Rotation = dir.Angle();
+            blood.Texture = tex;
+            this.AddChild(blood);
+        }
 
         foreach (var bs in poly.BloodySegments)
         {
@@ -120,22 +134,22 @@ public class bodypart : RigidBody2D
             Vector2 dir = p1 - p0;
             float len = dir.Length();
             int idx = (int)Math.Round(len / 50);
-            if(idx<0)
+            if (idx < 0)
                 idx = 0;
-            if(idx>=FreshWoundTextures.Length)
-                idx = FreshWoundTextures.Length-1;
+            if (idx >= FreshWoundTextures.Length)
+                idx = FreshWoundTextures.Length - 1;
             idx = 3;
             var tex = FreshWoundTextures[idx]; // TODO
 
-         
+
             // GD.Print(dir.Length());
             var texR = new Sprite();
             texR.Texture = tex;
-            float scl = len*WoundTextureScalings[idx]/ tex.GetSize().y;
-            texR.Position = p0+dir/2;
-            texR.Rotation = dir.Angle()+Mathf.Pi/2;
-            texR.Scale = new Vector2(scl,scl);
-            
+            float scl = len * WoundTextureScalings[idx] / tex.GetSize().y;
+            texR.Position = p0 + dir / 2;
+            texR.Rotation = dir.Angle() + Mathf.Pi / 2;
+            texR.Scale = new Vector2(scl, scl);
+
             // FIXME
             this.AddChild(texR);
         }
@@ -146,7 +160,7 @@ public class bodypart : RigidBody2D
             var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
 
             Vector2 dir = p1 - p0;
-                
+
             // add connection points
             var c = connectorScene.Instance<Connector>();
             c.GlobalPosition = p0 + dir * 0.5f;
@@ -165,6 +179,55 @@ public class bodypart : RigidBody2D
         {
             // var targetAngle = Math.Cos(runtime * RotSpeed);
             // AngularVelocity = (float)targetAngle * RotLimit;
+        }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        // check current gamestate and set physics accordingly
+        var state = GameState.Current(this);
+        if (state.IsCutting)
+        {
+            LinearDamp = 0.5f;
+            AngularDamp = 0.5f;
+        }
+        else if (state.IsStitching)
+        {
+            AppliedForce = Vector2.Zero;
+            LinearDamp = 0.5f;
+            AngularDamp = 0.5f;
+            if (Dragging.Get("dragging") as bool? == false)
+            {
+                foreach (var c in Connectors.GetChildren())
+                {
+                    var conn = c as Connector;
+                    if (conn != null)
+                    {
+                        foreach (Area2D area in conn.GetOverlappingAreas())
+                        {
+                            if (area.GetParent().GetParent() is bodypart bp)
+                            {
+                                if (bp.Dragging.Get("dragging") as bool? == true)
+                                {
+                                    var dir = area.GlobalPosition - conn.GlobalPosition;
+                                   // this.AddForce(conn.GlobalPosition - GlobalPosition, dir * 10);
+                                    this.AddCentralForce(dir*5);
+                                    GD.Print("forcing" + dir);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if (state.IsThrowing)
+        {
+            LinearDamp = 0.1f;
+            AngularDamp = 0.1f;
+        }
+        else
+        {
+            GD.PrintErr("Unknown game state! In bodypart.cs");
         }
     }
 }

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Otter Schwanz.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Otter Koerper.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cuteness_Otter Kopf.png" type="Texture" id=5]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -53, -11 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 19.332, 41.808 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 217.772, 38.2083, 216.772, 58.2083, 177.772, 92.2083, 148.772, 98.2083, 101.772, 100.208, 78.7718, 94.2083, 73.7718, 87.2083, 88.7718, 55.2083, 102.772, 38.2083, 126.772, 34.2083, 160.772, 33.2083 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 121, -24 )
+texture = ExtResource( 5 )
+texture_offset = Vector2( 64.48, 97.942 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -23.1
+polygon = PoolVector2Array( -13, -87, -29, -78, -44, -22, -13, 2, 32, 12, 51, 8, 64, -8, 83, -55, 74, -69, 46, -76 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 5, -17 )
+offset = Vector2( 0.415, 0.211 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 164.632, 26.134 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -15.1
+polygon = PoolVector2Array( 10.585, 13.789, 9.585, -14.211, -134.415, -45.211, -159.415, -38.211, -86.415, 0.789, -54.415, 11.789, 2.585, 17.789 )
+script = ExtResource( 2 )
+RotSpeed = 1.8

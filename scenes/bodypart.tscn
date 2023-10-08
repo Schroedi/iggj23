@@ -5,7 +5,9 @@
 [ext_resource path="res://scenes/Dragging.gd" type="Script" id=3]
 
 [node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 17
 input_pickable = true
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
@@ -19,3 +21,5 @@ polygon = PoolVector2Array( -35, -24, 72, -39, 95, 39, 51, 92, -31, 85 )
 
 [node name="Dragging" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Connectors" type="Node2D" parent="."]

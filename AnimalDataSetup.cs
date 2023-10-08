@@ -21,6 +21,7 @@ public class AnimalDataSetup
         public List<int> BloodySegments = new List<int>();
 
         public BodyPartConfig Definition;
+        public Animal Animal { get; set; }
 
         public void DebugPrint()
         {

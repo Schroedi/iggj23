@@ -9,6 +9,8 @@ public class BubbleContent : Node2D
 
     public bool Popped = false;
 
+    public bool HasAnimalType = false;
+
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -26,6 +28,12 @@ public class BubbleContent : Node2D
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        if (!HasAnimalType)
+        {
+            HasAnimalType = true;
+            AnimalType = GameState.Current(this).AnimalDistribution.Sample();
+        }
+
         if (Popped)
             return;
 

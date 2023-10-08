@@ -9,6 +9,8 @@ public class GameState : Node2D
     public string[] StateNames = new[] { "Cutting", "Stitching", "Throwing", "Fighting" };
     public string CurrentState = "Cutting";
 
+    public AnimalDistribution AnimalDistribution;
+
     public static GameState Current(Node someNode)
     {
         var global = someNode.GetNode<Node>("/root/GlobalHack");
@@ -21,6 +23,7 @@ public class GameState : Node2D
     public override void _Ready()
     {
         GetNode<Node>("/root/GlobalHack").Set("CurrentGamestate", this);
+        AnimalDistribution = AnimalDistribution.Create();
     }
 
     public override void _Process(float delta)

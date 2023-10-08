@@ -36,10 +36,10 @@ script = ExtResource( 2 )
 RotSpeed = 2.0
 
 [node name="Polygon2D2" type="Polygon2D" parent="Polygon2D/Polygon2D"]
-position = Vector2( 36, -53 )
-offset = Vector2( -2.70418, 1.80594 )
+position = Vector2( 35, -42 )
+offset = Vector2( -1.65, -4.115 )
 texture = ExtResource( 6 )
-texture_offset = Vector2( 48.667, 78.336 )
+texture_offset = Vector2( 48.681, 81.581 )
 texture_scale = Vector2( 10, 10 )
 polygon = PoolVector2Array( -18, 7, -49, -12, -47, -43, -27, -67, 28, -78, 65, -57, 99, -14, 87, 34, 62, 51 )
 script = ExtResource( 2 )

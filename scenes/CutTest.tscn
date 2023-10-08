@@ -26,6 +26,7 @@ position = Vector2( 1107, 312 )
 shape = SubResource( 2 )
 
 [node name="Animal" parent="." instance=ExtResource( 1 )]
+visible = false
 position = Vector2( 586, 249 )
 
 [node name="CutTester" type="Node2D" parent="."]

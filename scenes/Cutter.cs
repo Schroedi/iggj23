@@ -5,7 +5,7 @@ public class Cutter : Line2D
     private Node _globals;
     private Vector2 _startPos;
     private RayCast2D _raycast;
-    
+
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventScreenTouch touch)
@@ -13,7 +13,7 @@ public class Cutter : Line2D
             // don't cut while we hover any animal(part) - except if we are already cutting
             if (!Visible && _globals.Get("PartsHovering") as int? != 0)
                 return;
-            
+
             if (touch.Pressed)
             {
                 _startPos = touch.Position;
@@ -56,6 +56,10 @@ public class Cutter : Line2D
 
     private void CutAnimal(bodypart bodypart, Vector2 from, Vector2 to)
     {
+        foreach (var part in bodypart.GetParent().GetChildren())
+            if (part is bodypart bp)
+                bp.UpdateDataSetupPart();
+
         var cut = AnimalCutter.Cut(bodypart.CurrentSetup, from, to);
         var parent = bodypart.GetParent().GetParent();
         GD.Print($"got {cut.NewAnimals.Count} new animals");

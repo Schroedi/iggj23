@@ -8,7 +8,7 @@ public class bodypart : RigidBody2D
     [Export] public float RotSpeed = 1.5f;
 
     [Export] public float RotLimit = 1.5f;
-    
+
     public Animal Animal { get { return poly.Animal; } }
 
     public AnimalDataSetup CurrentSetup;
@@ -20,7 +20,7 @@ public class bodypart : RigidBody2D
     private CollisionPolygon2D CollisionPolygon;
 
     private AnimalDataSetup.BodyPart poly;
-    
+
     private Node2D Connectors;
     PackedScene connectorScene = ResourceLoader.Load<PackedScene>("res://scenes/Connector.tscn");
 
@@ -51,6 +51,12 @@ public class bodypart : RigidBody2D
         RotLimit = bp.RotLimit;
     }
 
+    public void UpdateDataSetupPart()
+    {
+        poly.Origin = GlobalPosition;
+        poly.Rot = GlobalRotation;
+    }
+
     public bodypart()
     {
     }
@@ -60,7 +66,7 @@ public class bodypart : RigidBody2D
     {
         // otherwise dragging can fail
         CanSleep = false;
-        
+
         Connectors = GetNode<Node2D>("Connectors");
 
         var bloodPScence = GD.Load<PackedScene>("res://BloodParticles.tscn");
@@ -120,22 +126,22 @@ public class bodypart : RigidBody2D
             Vector2 dir = p1 - p0;
             float len = dir.Length();
             int idx = (int)Math.Round(len / 50);
-            if(idx<0)
+            if (idx < 0)
                 idx = 0;
-            if(idx>=FreshWoundTextures.Length)
-                idx = FreshWoundTextures.Length-1;
+            if (idx >= FreshWoundTextures.Length)
+                idx = FreshWoundTextures.Length - 1;
             idx = 3;
             var tex = FreshWoundTextures[idx]; // TODO
 
-         
+
             // GD.Print(dir.Length());
             var texR = new Sprite();
             texR.Texture = tex;
-            float scl = len*WoundTextureScalings[idx]/ tex.GetSize().y;
-            texR.Position = p0+dir/2;
-            texR.Rotation = dir.Angle()+Mathf.Pi/2;
-            texR.Scale = new Vector2(scl,scl);
-            
+            float scl = len * WoundTextureScalings[idx] / tex.GetSize().y;
+            texR.Position = p0 + dir / 2;
+            texR.Rotation = dir.Angle() + Mathf.Pi / 2;
+            texR.Scale = new Vector2(scl, scl);
+
             // FIXME
             this.AddChild(texR);
         }
@@ -146,7 +152,7 @@ public class bodypart : RigidBody2D
             var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
 
             Vector2 dir = p1 - p0;
-                
+
             // add connection points
             var c = connectorScene.Instance<Connector>();
             c.GlobalPosition = p0 + dir * 0.5f;

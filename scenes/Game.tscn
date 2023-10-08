@@ -45,8 +45,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 4.4 )
+"points": PoolRealArray( 0, -0.25, 0, 1.6, -0.578907, 100, -2, 1.49799, 2.3, 0.292358, 0, -1.9, 2.63611, 0.25, 0 ),
+"times": PoolRealArray( 0, 4.4, 10 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath(".:scroll_offset:y")
@@ -55,8 +55,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 4.4 )
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 15.572, -0.25, 0, 0.4, 13.928, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 4.4, 10 )
 }
 
 [node name="Game" type="Node2D"]

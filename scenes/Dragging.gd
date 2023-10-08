@@ -60,11 +60,16 @@ func stopDrag():
 	for c in $"../Connectors".get_children():
 		if c is Area2D:
 			var overlaps = c.get_overlapping_areas()
-			if overlaps.size() == 0:
+			var p = get_parent()
+			var first = null
+			for o in overlaps:
+				# don't connect to self
+				if o.get_parent() == p:
+					continue
+				first = o
+			if first == null:
 				continue
 			
-			# get physics body the area belongs to
-			var first:Area2D = c.get_overlapping_areas()[0]
 			var otherBody: RigidBody2D = first.get_parent().get_parent()
 			
 			# TODO: snapping

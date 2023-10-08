@@ -38,30 +38,30 @@ margin_bottom = 75.0
 text = "CUT/ENESS
 by Frankenstein's Finest
 
-1. Cut apart your Wares
-2. Assembly your Delivery
-3. Let it reach the Goal"
+1. Cut apart your Material
+2. Assemble your Creation
+3. Make the Children happy"
 
 [node name="lPhase1" type="Label" parent="."]
 margin_left = 18.0
 margin_top = 479.0
 margin_right = 397.0
 margin_bottom = 501.0
-text = "Phase 1: Click+Drag to cut apart your wares."
+text = "Phase 1: Click+Drag to cut apart your raw material."
 
 [node name="lPhase2" type="Label" parent="."]
 margin_left = 18.0
 margin_top = 479.0
 margin_right = 397.0
 margin_bottom = 501.0
-text = "Phase 2: drag parts assembly the living delivery. Parts automatically connect at cuts."
+text = "Phase 2: drag parts to assemble the living creation. Parts automatically connect at cuts."
 
 [node name="lPhase3" type="Label" parent="."]
 margin_left = 18.0
 margin_top = 479.0
 margin_right = 397.0
 margin_bottom = 501.0
-text = "Phase 3: watch your creation reach the goal (or go back to the cutting board)."
+text = "Phase 3: watch your creation make as many children happy as possible (or go back to the cutting board)."
 
 [node name="btnReset" type="Button" parent="."]
 margin_left = 210.0
@@ -83,7 +83,7 @@ margin_left = 477.0
 margin_top = 13.0
 margin_right = 592.0
 margin_bottom = 61.0
-text = "To Delivery"
+text = "To the Parade"
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 692.0

@@ -173,7 +173,13 @@ public class bodypart : RigidBody2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        runtime += delta;
+        var speed = 1f;
+
+        var state = GameState.Current(this);
+        if (state.IsThrowing)
+            speed += Mathf.Clamp((state.TimeInThrowing - 10) / 10f, 0f, 5f);
+
+        runtime += delta * speed;
 
         if (Joint != null)
         {
@@ -186,7 +192,7 @@ public class bodypart : RigidBody2D
     {
         // check current gamestate and set physics accordingly
         var state = GameState.Current(this);
-        
+
         // gravity only in phase 3
         GravityScale = state.IsThrowing ? 2 : 0;
 

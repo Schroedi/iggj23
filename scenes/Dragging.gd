@@ -18,6 +18,8 @@ func _on_RigidBody2D_input_event(viewport: Viewport, event: InputEvent, shape_id
 		# pick only once
 		if GlobalHack.Picked:
 			return
+		if GlobalHack.CurrentGamestate.IsThrowing:
+			return
 		dragging = true
 		GlobalHack.Picked = true
 		mouseBody.global_position = event.position

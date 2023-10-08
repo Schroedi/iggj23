@@ -31,6 +31,8 @@ public class GameState : Node2D
 
     public float TimeInThrowing = 0f;
 
+    public int Score = 0;
+
     public void StartPhase2()
     {
         CurrentState = "Stitching";
@@ -40,12 +42,13 @@ public class GameState : Node2D
     {
         CurrentState = "Throwing";
         TimeInThrowing = 0;
+        Score = 0;
 
         var allAnimals = ConnectedAnimal.ComputeAnimals(GameRoot);
 
         LargestAnimal = null;
         foreach (var ap in allAnimals)
-            if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea)
+            if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea || (LargestAnimal.AllAnimals.Count == 1 && ap.AllAnimals.Count > 1))
                 LargestAnimal = ap;
 
         // explode all others

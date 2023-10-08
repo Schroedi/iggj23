@@ -6,6 +6,9 @@ public class Animal : Node2D
 {
     // empty
 
+    [Export]
+    public AnimalType AnimalType;
+
     public AnimalDataSetup Setup;
 
     public override void _Ready()
@@ -40,6 +43,7 @@ public class Animal : Node2D
             p.TexScale = poly.TextureScale;
             p.TexRot = poly.TextureRotation;
             p.Animal = this;
+            p.AnimalType = AnimalType;
             for (var i = 0; i < p.Poly.Count; ++i)
                 p.Poly[i] += poly.Offset;
 

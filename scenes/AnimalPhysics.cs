@@ -25,6 +25,8 @@ public class AnimalPhysics : Node2D
 
     public Vector2 AveragePosition;
 
+    public AnimalType AnimalType;
+
     public AnimalPhysics(Animal animal)
     {
         Animal = animal;
@@ -49,6 +51,7 @@ public class AnimalPhysics : Node2D
             var node = bpScenes.Instance<bodypart>();
             node.Init(part, part.ParentIndex == -1 ? null : Parts[part.ParentIndex], AnimalSetup);
             Parts.Add(node);
+            AnimalType = part.AnimalType; // should be the same anyways
             this.CallDeferred("add_child", node);
         }
 

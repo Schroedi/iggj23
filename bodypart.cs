@@ -177,7 +177,7 @@ public class bodypart : RigidBody2D
 
         var state = GameState.Current(this);
         if (state.IsThrowing)
-            speed += Mathf.Clamp((state.TimeInThrowing - 10) / 10f, 0f, 5f);
+            speed += Mathf.Clamp((state.TimeInThrowing - 4) / 4f, 0f, 5f);
 
         runtime += delta * speed;
 
@@ -234,7 +234,7 @@ public class bodypart : RigidBody2D
         {
             LinearDamp = 0.1f;
             AngularDamp = 0.1f;
-            Friction = 0.6f;
+            Friction = 0.3f;
         }
         else
         {

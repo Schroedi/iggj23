@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/DreamBubble.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/BubblePreviews.cs" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 216, 1180 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 695, 1173 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1092, 1164 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1485, 1152 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1226, 1180 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1722, 1183 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 472, 1189 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 258, 1183 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 802, 1182 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1117, 1179 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1850, 1173 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1496, 1192 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1103, 1168 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 794, 1196 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 476, 1187 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 284, 1212 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D17" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1190 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true
+
+[node name="Node2D18" parent="." instance=ExtResource( 1 )]
+position = Vector2( 779, 1180 )
+scale = Vector2( 0.327269, 0.327269 )
+PreviewMode = true

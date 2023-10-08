@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class lTime : Label
+public class BubblePreviews : Node2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -17,10 +17,6 @@ public class lTime : Label
     public override void _Process(float delta)
     {
         var state = GameState.Current(this);
-        this.Visible = state.IsThrowing;
-
-        if (state.TimeToLive >= 0)
-            this.Text = $"Time to Live: {(int)state.TimeToLive} s";
-        else this.Text = "ded";
+        this.Visible = !state.IsThrowing;
     }
 }

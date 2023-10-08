@@ -11,6 +11,8 @@ public class BubbleContent : Node2D
 
     public bool HasAnimalType = false;
 
+    public bool IsPreview = false;
+
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -23,6 +25,9 @@ public class BubbleContent : Node2D
                 LabelScore = l;
 
         LabelScore.Visible = false;
+
+        if (GetParent().GetParent<DreamBubble>().PreviewMode)
+            IsPreview = true;
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +39,8 @@ public class BubbleContent : Node2D
             AnimalType = GameState.Current(this).AnimalDistribution.Sample();
         }
 
+        if (IsPreview)
+            return;
         if (Popped)
             return;
 

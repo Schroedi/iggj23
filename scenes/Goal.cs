@@ -15,10 +15,9 @@ public class Goal : Area2D
 
     private void OnBodyEntered(Node body)
     {
-        GD.Print("Goal");
-        if (body is Animal animal)
+        if (body is bodypart part)
         {
-            
+            GD.Print("Goal");
         }
     }
 }

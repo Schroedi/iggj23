@@ -9,6 +9,8 @@ public class GameState : Node2D
     public string[] StateNames = new[] { "Cutting", "Stitching", "Throwing", "Fighting" };
     public string CurrentState = "Cutting";
 
+    public AnimalDistribution AnimalDistribution;
+
     public static GameState Current(Node someNode)
     {
         var global = someNode.GetNode<Node>("/root/GlobalHack");
@@ -21,15 +23,46 @@ public class GameState : Node2D
     public override void _Ready()
     {
         GetNode<Node>("/root/GlobalHack").Set("CurrentGamestate", this);
+        AnimalDistribution = AnimalDistribution.Create();
     }
 
     public override void _Process(float delta)
     {
         if (IsThrowing)
+        {
             TimeInThrowing += delta;
+            TimeToLive -= delta;
+
+            if (TimeToLive < 0 && LargestAnimal != null)
+                FinishGame();
+        }
+    }
+
+    void FinishGame()
+    {
+        // explode all others
+        var bloodExplScene = GD.Load<PackedScene>("res://BloodParticlesEx.tscn");
+
+        foreach (var ap in LargestAnimal.AllAnimals)
+        {
+            foreach (var bp in ap.Parts)
+            {
+                var blood = bloodExplScene.Instance<CPUParticles2D>();
+                blood.GlobalPosition = bp.GlobalPosition;
+                blood.Emitting = true;
+                GameRoot.AddChild(blood);
+            }
+
+            // delete animal
+            ap.QueueFree();
+        }
+
+        LargestAnimal = null;
     }
 
     public float TimeInThrowing = 0f;
+
+    public float TimeToLive = 20;
 
     public int Score = 0;
 

@@ -41,7 +41,10 @@ public class AnimalPhysics : Node2D
         if (AnimalSetup == null)
         {
             if (AnimalPath != null && Animal == null)
+            {
                 Animal = GetNode<Animal>(AnimalPath);
+                Animal.Visible = false;
+            }
             if (Animal != null)
                 AnimalSetup = Animal.Setup;
         }

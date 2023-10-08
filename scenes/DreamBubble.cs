@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class DreamBubble : Node2D
 {
+    [Export]
+    public bool PreviewMode = false;
+
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";

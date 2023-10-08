@@ -18,6 +18,7 @@ public class bodypart : RigidBody2D
     private double runtime = 0f;
     private Polygon2D SpritePolygon;
     private CollisionPolygon2D CollisionPolygon;
+    private Node Dragging;
 
     private AnimalDataSetup.BodyPart poly;
     
@@ -67,6 +68,7 @@ public class bodypart : RigidBody2D
 
         SpritePolygon = GetNode<Polygon2D>("SpritePolygon");
         CollisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon");
+        Dragging = GetNode<Node>("Dragging");
         if (poly != null)
         {
             this.GlobalPosition = poly.Origin;
@@ -166,5 +168,33 @@ public class bodypart : RigidBody2D
             // var targetAngle = Math.Cos(runtime * RotSpeed);
             // AngularVelocity = (float)targetAngle * RotLimit;
         }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if (Dragging.Get("dragging") as bool? == false)
+        {
+           foreach (var c in Connectors.GetChildren())
+           {
+               var conn = c as Connector;
+               if (conn != null)
+               {
+                   foreach (Area2D area in conn.GetOverlappingAreas())
+                   {
+                       if( area.GetParent().GetParent() is bodypart bp)
+                       {
+                           if(bp.Dragging.Get("dragging") as bool? == true)
+                           {
+                               var dir = area.GlobalPosition - conn.GlobalPosition;
+                               this.AddForce(conn.GlobalPosition-GlobalPosition,dir);
+                           }
+                       }
+                   }
+               }
+           }    
+        }
+      
+        base._PhysicsProcess(delta);
+        
     }
 }

@@ -122,7 +122,6 @@ current = true
 script = ExtResource( 12 )
 
 [node name="Arena" parent="." instance=ExtResource( 13 )]
-position = Vector2( 0, 1840 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

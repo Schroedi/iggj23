@@ -6,9 +6,9 @@
 [ext_resource path="res://scenes/Animals/Katsche.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Animals/Dragen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/bg/cabin.png" type="Texture" id=6]
-[ext_resource path="res://Assets/bg/town_far.png" type="Texture" id=7]
-[ext_resource path="res://Assets/bg/town.png" type="Texture" id=8]
-[ext_resource path="res://Assets/bg/clouds.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Backdrop_City 1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Backdrop_City 2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Backdrop_Sky.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Parallax.gd" type="Script" id=10]
 [ext_resource path="res://scenes/GameState.cs" type="Script" id=11]
 [ext_resource path="res://scenes/CameraController.cs" type="Script" id=12]
@@ -102,24 +102,30 @@ texture = ExtResource( 6 )
 script = ExtResource( 10 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.01, 0 )
 
 [node name="Clouds" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 464, 224 )
+position = Vector2( -4945.35, -837.498 )
+scale = Vector2( 0.854809, 0.930968 )
 texture = ExtResource( 9 )
+offset = Vector2( 6830, 1340 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.07, 0.01 )
+
+[node name="Town" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 570, 161 )
+scale = Vector2( 0.759528, 0.550691 )
+texture = ExtResource( 8 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.8, 0.8 )
+motion_scale = Vector2( 0.2, 0.015 )
 
 [node name="TownFar" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
 modulate = Color( 1, 1, 1, 0.498039 )
-position = Vector2( 497, 218 )
+position = Vector2( 1127, 77 )
+scale = Vector2( 1.02098, 0.887376 )
 texture = ExtResource( 7 )
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Town" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 473, 335 )
-texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground"]
 autoplay = "wiggle"

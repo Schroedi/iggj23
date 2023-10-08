@@ -81,6 +81,7 @@ texture_scale = Vector2( 10, 10 )
 polygon = PoolVector2Array( -12, -4, -21, 31, -12, 36, 12, 42, 22, 38, 33, 31, 32, 22, 14, -5 )
 script = ExtResource( 2 )
 RotSpeed = 2.346
+RotLimit = 10.0
 
 [node name="Polygon2D5" type="Polygon2D" parent="Polygon2D"]
 position = Vector2( 3, 22 )
@@ -99,6 +100,7 @@ texture_scale = Vector2( 10, 10 )
 polygon = PoolVector2Array( -10, -1, -18, 29, -12, 36, 12, 42, 22, 38, 29, 33, 29, 24, 13, -1 )
 script = ExtResource( 2 )
 RotSpeed = 2.346
+RotLimit = 10.0
 
 [node name="Polygon2D6" type="Polygon2D" parent="Polygon2D"]
 position = Vector2( 52, -16 )

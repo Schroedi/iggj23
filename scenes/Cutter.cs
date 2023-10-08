@@ -12,7 +12,7 @@ public class Cutter : Line2D
         {
             if (!GameState.Current(this).IsCutting)
                 return;
-            
+
             // don't cut while we hover any animal(part) - except if we are already cutting
             if (!Visible && _globals.Get("PartsHovering") as int? != 0)
                 return;
@@ -30,18 +30,21 @@ public class Cutter : Line2D
                 GD.Print("CUT ME INTO PIECES");
                 _raycast.GlobalPosition = touch.Position;
                 _raycast.CastTo = _startPos - touch.Position;
-                _raycast.ForceRaycastUpdate();
-                if (_raycast.IsColliding())
+                if ((_startPos - touch.Position).Length() > 50) // need at least 50px
                 {
-                    if (_raycast.GetCollider() is bodypart part)
+                    _raycast.ForceRaycastUpdate();
+                    if (_raycast.IsColliding())
                     {
-                        CutAnimal(part, _startPos, touch.Position);
-                    }
-                    else
-                    {
-                        GD.PrintErr("Tried to cut a non animal: " + _raycast.GetCollider().GetType().Name);
-                    }
+                        if (_raycast.GetCollider() is bodypart part)
+                        {
+                            CutAnimal(part, _startPos, touch.Position);
+                        }
+                        else
+                        {
+                            GD.PrintErr("Tried to cut a non animal: " + _raycast.GetCollider().GetType().Name);
+                        }
 
+                    }
                 }
 
                 this.Visible = false;

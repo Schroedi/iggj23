@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Backdrop_Haus 5.png-0cc9593dae9d1e725b1456891d13d9a1
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=0
 flags/filter=true
 flags/mipmaps=false

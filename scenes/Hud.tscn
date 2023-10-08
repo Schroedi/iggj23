@@ -44,23 +44,23 @@ by Frankenstein's Finest
 
 [node name="lPhase1" type="Label" parent="."]
 margin_left = 18.0
-margin_top = 479.0
+margin_top = 1041.0
 margin_right = 397.0
-margin_bottom = 501.0
+margin_bottom = 1063.0
 text = "Phase 1: Click+Drag to cut apart your raw material."
 
 [node name="lPhase2" type="Label" parent="."]
 margin_left = 18.0
-margin_top = 479.0
-margin_right = 397.0
-margin_bottom = 501.0
+margin_top = 1041.0
+margin_right = 577.0
+margin_bottom = 1063.0
 text = "Phase 2: drag parts to assemble the living creation. Parts automatically connect at cuts."
 
 [node name="lPhase3" type="Label" parent="."]
 margin_left = 18.0
-margin_top = 479.0
-margin_right = 397.0
-margin_bottom = 501.0
+margin_top = 1041.0
+margin_right = 682.0
+margin_bottom = 1063.0
 text = "Phase 3: watch your creation make as many children happy as possible (or go back to the cutting board)."
 
 [node name="btnReset" type="Button" parent="."]

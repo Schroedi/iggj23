@@ -22,8 +22,18 @@ public class CameraController : Camera2D
         {
             if (state.LargestAnimal != null)
             {
-                var a = 0.9f;
-                Offset = a * Offset + (1 - a) * state.LargestAnimal.ComputeAveragePosition();
+                var a = 0.97f;
+                var tarPos = state.LargestAnimal.ComputeAveragePosition();
+                tarPos.y -= 150;
+                var newOffset = a * Offset + (1 - a) * tarPos;
+
+                if (newOffset.y < 1080 * 1.5)
+                    newOffset.x = 1920 / 2;
+                if (newOffset.y < 1080 / 2)
+                    newOffset.y = 1080 / 2;
+
+                Offset = newOffset;
+
                 // GD.Print(Offset);
                 // GD.Print(state.LargestAnimal.AveragePosition);
             }

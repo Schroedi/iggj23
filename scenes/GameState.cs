@@ -23,6 +23,14 @@ public class GameState : Node2D
         GetNode<Node>("/root/GlobalHack").Set("CurrentGamestate", this);
     }
 
+    public override void _Process(float delta)
+    {
+        if (IsThrowing)
+            TimeInThrowing += delta;
+    }
+
+    public float TimeInThrowing = 0f;
+
     public void StartPhase2()
     {
         CurrentState = "Stitching";
@@ -31,6 +39,7 @@ public class GameState : Node2D
     public void StartPhase3()
     {
         CurrentState = "Throwing";
+        TimeInThrowing = 0;
 
         var allAnimals = ConnectedAnimal.ComputeAnimals(GameRoot);
 

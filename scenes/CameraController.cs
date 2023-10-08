@@ -30,7 +30,7 @@ public class CameraController : Camera2D
         }
         else
         {
-            Offset = new Vector2(960 / 2, 512 / 2);
+            Offset = new Vector2(1920 / 2, 1080 / 2);
         }
     }
 }

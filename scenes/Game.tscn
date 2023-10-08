@@ -127,3 +127,4 @@ position = Vector2( 0, 1840 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource( 2 )]
+mouse_filter = 2

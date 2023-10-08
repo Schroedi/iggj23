@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Cuteness_Otter Schwanz.png-e1dbe6134390d3225003fe5a5
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=0
 flags/filter=true
 flags/mipmaps=false

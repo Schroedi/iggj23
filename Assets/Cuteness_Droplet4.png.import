@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Cuteness_Droplet4.png-79af5151d31d09fc79a515e9c074e2
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=0
 flags/filter=true
 flags/mipmaps=false

@@ -14,11 +14,11 @@ dest_files=[ "res://.import/Backdrop_Sandman.png-24903314d9afc77029a4e3670b0a8e6
 
 [params]
 
-compress/mode=0
-compress/lossy_quality=0.7
+compress/mode=1
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=2
 flags/repeat=0
 flags/filter=true
 flags/mipmaps=false

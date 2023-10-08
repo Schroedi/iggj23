@@ -29,7 +29,32 @@ public class GameState : Node2D
         {
             TimeInThrowing += delta;
             TimeToLive -= delta;
+
+            if (TimeToLive < 0 && LargestAnimal != null)
+                FinishGame();
         }
+    }
+
+    void FinishGame()
+    {
+        // explode all others
+        var bloodExplScene = GD.Load<PackedScene>("res://BloodParticlesEx.tscn");
+
+        foreach (var ap in LargestAnimal.AllAnimals)
+        {
+            foreach (var bp in ap.Parts)
+            {
+                var blood = bloodExplScene.Instance<CPUParticles2D>();
+                blood.GlobalPosition = bp.GlobalPosition;
+                blood.Emitting = true;
+                GameRoot.AddChild(blood);
+            }
+
+            // delete animal
+            ap.QueueFree();
+        }
+
+        LargestAnimal = null;
     }
 
     public float TimeInThrowing = 0f;

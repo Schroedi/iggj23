@@ -90,28 +90,32 @@ rect_scale = Vector2( 4, 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "Time to Live: 30s"
+align = 1
 script = ExtResource( 6 )
 
 [node name="btnReset" type="Button" parent="."]
-margin_left = 186.0
-margin_top = 239.0
-margin_right = 301.0
-margin_bottom = 287.0
-text = "Reset Level"
+margin_left = 29.0
+margin_top = 328.0
+margin_right = 149.0
+margin_bottom = 363.0
+rect_scale = Vector2( 2, 2 )
+text = "New Game"
 script = ExtResource( 3 )
 
 [node name="btnPhase2" type="Button" parent="."]
 margin_left = 27.0
 margin_top = 241.0
-margin_right = 142.0
-margin_bottom = 289.0
+margin_right = 147.0
+margin_bottom = 276.0
+rect_scale = Vector2( 2, 2 )
 text = "To Assembly"
 
 [node name="btnPhase3" type="Button" parent="."]
-margin_left = 27.0
-margin_top = 307.0
-margin_right = 142.0
-margin_bottom = 355.0
+margin_left = 292.0
+margin_top = 242.0
+margin_right = 412.0
+margin_bottom = 277.0
+rect_scale = Vector2( 2, 2 )
 text = "To the Parade"
 
 [node name="Label2" type="Label" parent="."]

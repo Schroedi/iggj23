@@ -19,6 +19,8 @@ public class lTime : Label
         var state = GameState.Current(this);
         this.Visible = state.IsThrowing;
 
-        this.Text = $"Time to Live: {(int)state.TimeToLive} s";
+        if (state.TimeToLive >= 0)
+            this.Text = $"Time to Live: {(int)state.TimeToLive} s";
+        else this.Text = "dead";
     }
 }

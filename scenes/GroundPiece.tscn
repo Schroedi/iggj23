@@ -44,9 +44,13 @@ texture = ExtResource( 6 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 rotation = 0.140841
 
+[node name="BackdropBoden2" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 140.262, 561.874 )
+texture = ExtResource( 1 )
+
 [node name="BackdropBoden" type="Sprite" parent="StaticBody2D"]
 position = Vector2( 1886, 556 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 2, 2, 1254, 171, 2858, 476, 3772, 695, 3905, 1076, -92, 1079 )
+polygon = PoolVector2Array( 0.561503, 3.96039, 1254, 171, 2858, 476, 3772.4, 684.221, 3905, 1076, -92, 1079 )

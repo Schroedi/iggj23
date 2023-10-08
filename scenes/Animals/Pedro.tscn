@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Pedro Arm Rechts.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Pedro Kopf.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cuteness_Pedro Koerper.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Cuteness_Pedro Bein Links.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Cuteness_Pedro Bein Rechts.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Cuteness_Pedro Arm Links.png" type="Texture" id=8]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -14, -59 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 5 )
+texture_offset = Vector2( 20, 50 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 177.772, 26.2083, 195.772, 37.2083, 202.772, 50.2083, 207.772, 72.2083, 193.772, 107.208, 171.772, 121.208, 140.772, 129.208, 108.772, 123.208, 84.7718, 111.208, 73.7718, 89.2083, 77.7718, 54.2083, 89.7718, 37.2083, 117.772, 24.2083, 148.772, 22.2083 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 51, -38 )
+rotation = -1.17276
+offset = Vector2( -0.523102, -3.6191 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 70, 115 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -76.0
+polygon = PoolVector2Array( 71.869, -79.5359, -24.5249, -58.5307, -38.069, -36.5636, -33.8575, -18.8079, -13.6597, 42.1269, 14.8968, 71.342, 117.743, 47.6235, 124.206, 24.2948, 95.5854, -72.1513 )
+script = ExtResource( 2 )
+RotSpeed = 2.0
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 14, 46 )
+rotation = -1.17276
+offset = Vector2( -4.769, -0.76 )
+texture = ExtResource( 6 )
+texture_offset = Vector2( 55, 20 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -69.4
+polygon = PoolVector2Array( 19.9361, 5.05442, 14.4152, -13.2354, -2.07322, -21.4897, -43.3465, -34.5097, -54.1151, -34.3209, -55.77, -22.777, -47.588, 9.58127, -31.0152, 43.8354, -10.1065, 39.3829, 12.0695, 22.4647, 18.2812, 16.5983 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 82, 41 )
+offset = Vector2( 0.255, 0.211 )
+texture = ExtResource( 7 )
+texture_offset = Vector2( 26.116, 16.352 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 4.52312, -16.3809, -8.47688, -14.3809, -17.4769, -6.38094, -25.4769, 33.6191, -21.4769, 48.6191, 4.52312, 54.6191, 40.5231, 51.6191, 55.5231, 41.6191, 49.5231, 26.6191, 17.5231, -12.3809 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 102, -10 )
+offset = Vector2( 0.415, 0.211 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 43.126, 19.466 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = 59.5
+polygon = PoolVector2Array( 6.585, -19.211, -10.415, -14.211, -4.415, 14.789, 11.585, 46.789, 20.585, 55.789, 34.585, 57.789, 46.585, 52.789, 54.585, 31.789, 49.585, 7.789, 42.585, -6.211, 29.585, -15.211 )
+script = ExtResource( 2 )
+RotSpeed = 1.8
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( -7, -9 )
+offset = Vector2( 0.415, 0.211 )
+texture = ExtResource( 8 )
+texture_offset = Vector2( 35.346, 16.478 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -54.7
+polygon = PoolVector2Array( -50.415, -2.211, -53.415, 13.789, -44.415, 43.789, -32.415, 52.789, -21.415, 53.789, -9.415, 44.789, 2.585, 13.789, 9.585, -10.211, -4.415, -18.211, -21.415, -19.211, -38.415, -15.211 )
+script = ExtResource( 2 )
+RotSpeed = 1.8

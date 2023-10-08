@@ -3,30 +3,33 @@
 [ext_resource path="res://scenes/Cutter.cs" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1278.5, 206.5 )
+extents = Vector2( 750.75, 206.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 143.5, 565 )
+extents = Vector2( 143.5, 387.5 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
+position = Vector2( 3, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 551, 717 )
-shape = SubResource( 1 )
-
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 587, -207 )
+position = Vector2( 467, -207 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -147, 302 )
+position = Vector2( -147, 123 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1105, 271 )
+position = Vector2( 1104, 123 )
 shape = SubResource( 2 )
+
+[node name="ShipGround" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipGround"]
+position = Vector2( 490, 718 )
+shape = SubResource( 1 )
 
 [node name="Cutter" type="Line2D" parent="."]
 visible = false

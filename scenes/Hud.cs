@@ -12,7 +12,7 @@ public class Hud : Control
     {
         var btnPhase2 = GetNode<Button>("btnPhase2");
         btnPhase2.Connect("pressed", this, "_on_btnPhase2_pressed");
-        
+
         var btnPhase3 = GetNode<Button>("btnPhase3");
         btnPhase3.Connect("pressed", this, "_on_btnPhase3_pressed");
     }
@@ -22,11 +22,14 @@ public class Hud : Control
         GD.Print("Phase 2");
         GameState.Current(this).StartPhase2();
     }
-    
+
     private void _on_btnPhase3_pressed()
     {
         GD.Print("Phase 3");
         GameState.Current(this).StartPhase3();
+
+        // delete ground
+        GetNode(new NodePath("/root/Game/Level/ShipGround")).QueueFree();
     }
 
     public override void _Process(float delta)

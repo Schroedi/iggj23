@@ -112,20 +112,20 @@ public class bodypart : RigidBody2D
         }
 
         foreach (var tex in DropletTextures)
-        foreach (var bs in poly.BloodySegments)
-        {
-            var blood = bloodPScence.Instance<CPUParticles2D>();
+            foreach (var bs in poly.BloodySegments)
+            {
+                var blood = bloodPScence.Instance<CPUParticles2D>();
 
-            var p0 = poly.Poly[bs];
-            var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
+                var p0 = poly.Poly[bs];
+                var p1 = poly.Poly[(bs + 1) % poly.Poly.Count];
 
-            Vector2 dir = p1 - p0;
-            blood.GlobalPosition = p0 + dir * 0.5f;
-            blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
-            blood.Rotation = dir.Angle();
-            blood.Texture = tex;
-            this.AddChild(blood);
-        }
+                Vector2 dir = p1 - p0;
+                blood.GlobalPosition = p0 + dir * 0.5f;
+                blood.EmissionRectExtents = new Vector2(dir.Length() / 2, 0);
+                blood.Rotation = dir.Angle();
+                blood.Texture = tex;
+                this.AddChild(blood);
+            }
 
         foreach (var bs in poly.BloodySegments)
         {
@@ -177,8 +177,8 @@ public class bodypart : RigidBody2D
 
         if (Joint != null)
         {
-            // var targetAngle = Math.Cos(runtime * RotSpeed);
-            // AngularVelocity = (float)targetAngle * RotLimit;
+            var targetAngle = Math.Cos(runtime * RotSpeed);
+            AngularVelocity = (float)targetAngle * RotLimit;
         }
     }
 
@@ -186,6 +186,10 @@ public class bodypart : RigidBody2D
     {
         // check current gamestate and set physics accordingly
         var state = GameState.Current(this);
+        
+        // gravity only in phase 3
+        GravityScale = state.IsThrowing ? 2 : 0;
+
         if (state.IsCutting)
         {
             LinearDamp = 0.5f;
@@ -210,8 +214,8 @@ public class bodypart : RigidBody2D
                                 if (bp.Dragging.Get("dragging") as bool? == true)
                                 {
                                     var dir = area.GlobalPosition - conn.GlobalPosition;
-                                   // this.AddForce(conn.GlobalPosition - GlobalPosition, dir * 10);
-                                    this.AddCentralForce(dir*5);
+                                    // this.AddForce(conn.GlobalPosition - GlobalPosition, dir * 10);
+                                    this.AddCentralForce(dir * 5);
                                     GD.Print("forcing" + dir);
                                 }
                             }

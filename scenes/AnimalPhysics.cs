@@ -19,6 +19,10 @@ public class AnimalPhysics : Node2D
 
     List<bodypart> Parts = new List<bodypart>();
 
+    public float TotalArea = 0f;
+
+    public Vector2 AveragePosition;
+
     public AnimalPhysics(Animal animal)
     {
         Animal = animal;
@@ -45,11 +49,23 @@ public class AnimalPhysics : Node2D
             Parts.Add(node);
             this.CallDeferred("add_child", node);
         }
+
+        TotalArea = AnimalSetup.ComputeArea();
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
+    public override void _Process(float delta)
+    {
+        // I'm a hack
+        GameState.Current(this).GameRoot = GetParent() as Node2D;
+
+        AveragePosition = new Vector2();
+        var cnt = 0;
+        foreach (var p in Parts)
+        {
+            AveragePosition += p.GlobalPosition;
+            cnt++;
+        }
+        AveragePosition /= cnt;
+    }
 }

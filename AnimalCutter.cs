@@ -206,6 +206,7 @@ public static class AnimalCutter
             newPart.TexOffset = part.TexOffset;
             newPart.TexScale = part.TexScale;
             newPart.TexRot = part.TexRot;
+            newPart.AnimalType = part.AnimalType;
 
             for (var i = 0; i < part.Poly.Count; ++i)
             {

@@ -45,7 +45,7 @@ public class GameState : Node2D
 
         LargestAnimal = null;
         foreach (var ap in allAnimals)
-            if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea)
+            if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea || (LargestAnimal.AllAnimals.Count == 1 && ap.AllAnimals.Count > 1))
                 LargestAnimal = ap;
 
         // explode all others

@@ -17,6 +17,7 @@ public class AnimalDataSetup
         public Vector2 TexScale;
         public float TexRot;
         public List<Vector2> Poly = new List<Vector2>();
+        public AnimalType AnimalType;
 
         // from idx to idx + 1 (mod Poly Count)
         public List<int> BloodySegments = new List<int>();

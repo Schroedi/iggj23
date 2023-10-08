@@ -61,7 +61,7 @@ public class Cutter : Line2D
         GD.Print($"got {cut.NewAnimals.Count} new animals");
         foreach (var a in cut.NewAnimals)
         {
-            // a.DebugPrint();
+            //a.DebugPrint();
             var ap = new AnimalPhysics() { AnimalSetup = a };
             ap.Name = "Cut Up Animal";
             parent.AddChild(ap);

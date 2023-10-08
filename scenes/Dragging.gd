@@ -72,9 +72,13 @@ func stopDrag():
 			# add joints
 			var j = PinJoint2D.new()
 			get_parent().add_child(j)
+			
 			j.global_position = first.global_position
+			j.disable_collision = true
 			yield(get_tree(), "idle_frame")
 			j.node_a = otherBody.get_path()
 			j.node_b = get_parent().get_path()
 			
-			# TODO: delete connectors
+			# delete connectors
+			c.queue_free()
+			first.queue_free()

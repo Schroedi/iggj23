@@ -13,19 +13,13 @@ public class Connector : Area2D
         base._Ready();
         _globals = GetNode<Node>("/root/GlobalHack");
         _snapIndicator = GetNode<Sprite>("SnapIndicator");
-        Connect("area_entered", this, nameof(_on_Area2D_area_entered));
-        Connect("area_exited", this, nameof(_on_Area2D_area_exited));
     }
 
-    public void _on_Area2D_area_entered(Area2D area)
+    public override void _PhysicsProcess(float delta)
     {
-        if (_globals.Get("Picked") as bool? == true)
-            _snapIndicator.Visible = true; 
+        bool picking = _globals.Get("Picked") as bool? == true;
+        _snapIndicator.Visible = picking && this.GetOverlappingAreas().Count > 0;
     }
-    
-    public void _on_Area2D_area_exited(Area2D area)
-    {
-        _snapIndicator.Visible = false;
-    }
+
 }
 

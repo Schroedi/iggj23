@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/TextBold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/btnStartGame.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Backdrop_Sky.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Backdrop_Sandman.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Intro Speech.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Cuteness_Logo.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Backdrop_Airship.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Cuteness_Text Bubble.png" type="Texture" id=8]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackdropSky" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 992.5, 569.5 )
+scale = Vector2( 0.458485, 0.547939 )
+texture = ExtResource( 3 )
+
+[node name="BackdropAirship" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 1475.24, 284.966 )
+scale = Vector2( 0.785803, 0.932914 )
+texture = ExtResource( 7 )
+
+[node name="CutenessLogo" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 513.625, 191.5 )
+scale = Vector2( 0.689694, 0.70339 )
+texture = ExtResource( 6 )
+
+[node name="BackdropSandman" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 520, 761 )
+scale = Vector2( 0.62075, 0.617929 )
+texture = ExtResource( 4 )
+
+[node name="CutenessTextBubble" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 1332, 697 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 1002.0
+margin_top = 479.0
+margin_right = 1772.0
+margin_bottom = 904.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Hi there, Dr. Franky Stein! I’m Sandman, feeling a bit groggy. Since You live in an airship, You are great for this job: The Kids need your help to sleep well tonight. Each child has a unique wish for a dream animal, but due to limited resources caused by high inflation, You can only create a single creature per city. Ready to make dreams come true and fly around cities?”"
+
+[node name="btnReset2" type="Button" parent="CanvasLayer"]
+margin_left = 29.0
+margin_top = 328.0
+margin_right = 149.0
+margin_bottom = 363.0
+rect_scale = Vector2( 2, 2 )
+text = "Start Game"
+script = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 5 )
+
+[connection signal="pressed" from="CanvasLayer/btnReset2" to="CanvasLayer/btnReset2" method="_on_btnReset2_pressed"]

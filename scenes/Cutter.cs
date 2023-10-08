@@ -8,6 +8,9 @@ public class Cutter : Line2D
 
     public override void _Input(InputEvent @event)
     {
+        if (!Intro.WasAlreadyShown)
+            return;
+
         if (@event is InputEventScreenTouch touch)
         {
             if (!GameState.Current(this).IsCutting)

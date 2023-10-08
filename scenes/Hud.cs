@@ -17,6 +17,8 @@ public class Hud : Control
         btnPhase3.Connect("pressed", this, "_on_btnPhase3_pressed");
     }
 
+
+
     private void _on_btnPhase2_pressed()
     {
         GD.Print("Phase 2");
@@ -34,6 +36,8 @@ public class Hud : Control
 
     public override void _Process(float delta)
     {
+        this.Visible = Intro.WasAlreadyShown;
+
         var gs = GameState.Current(this);
         GetNode<Button>("btnPhase2").Visible = gs.IsCutting;
         GetNode<Button>("btnPhase3").Visible = gs.IsStitching;

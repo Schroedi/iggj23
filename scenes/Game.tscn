@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Hud.tscn" type="PackedScene" id=2]
@@ -25,6 +25,8 @@
 [ext_resource path="res://scenes/BackdropRoom.cs" type="Script" id=23]
 [ext_resource path="res://scenes/BackdropRoom2.cs" type="Script" id=24]
 [ext_resource path="res://scenes/BubblePreviews.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/Intro.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/Intro.cs" type="Script" id=27]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -207,3 +209,6 @@ AnimalPath = NodePath("../AnimalBear")
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource( 2 )]
 mouse_filter = 2
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource( 26 )]
+script = ExtResource( 27 )

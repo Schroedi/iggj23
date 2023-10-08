@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Backdrop_Boden.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Backdrop_Haus 3.png" type="Texture" id=2]
@@ -6,39 +6,48 @@
 [ext_resource path="res://Assets/Backdrop_Haus 2.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Backdrop_Haus 4.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Backdrop_Haus 5.png" type="Texture" id=6]
+[ext_resource path="res://scenes/DreamBubble.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="BackdropHaus1" type="Sprite" parent="."]
-position = Vector2( 220, -80 )
+position = Vector2( 209, -35 )
+scale = Vector2( 0.71483, 0.71483 )
 texture = ExtResource( 3 )
 
 [node name="BackdropHaus7" type="Sprite" parent="."]
-position = Vector2( 2213, 517 )
+position = Vector2( 2173, 555 )
+scale = Vector2( 0.698588, 0.698588 )
 texture = ExtResource( 3 )
 
 [node name="BackdropHaus2" type="Sprite" parent="."]
-position = Vector2( 694, 84 )
+position = Vector2( 651, 133 )
+scale = Vector2( 0.600609, 0.600609 )
 texture = ExtResource( 4 )
 
 [node name="BackdropHaus8" type="Sprite" parent="."]
-position = Vector2( 3357, 1016 )
+position = Vector2( 3370, 1043 )
+scale = Vector2( 0.629337, 0.629337 )
 texture = ExtResource( 4 )
 
 [node name="BackdropHaus3" type="Sprite" parent="."]
-position = Vector2( 1742, 420 )
+position = Vector2( 1713, 456 )
+scale = Vector2( 0.622938, 0.622938 )
 texture = ExtResource( 2 )
 
 [node name="BackdropHaus4" type="Sprite" parent="."]
-position = Vector2( 2572, 620 )
+position = Vector2( 2527, 674 )
+scale = Vector2( 0.626459, 0.626459 )
 texture = ExtResource( 5 )
 
 [node name="BackdropHaus6" type="Sprite" parent="."]
-position = Vector2( 1251, 180 )
+position = Vector2( 1226, 225 )
+scale = Vector2( 0.622782, 0.622782 )
 texture = ExtResource( 5 )
 
 [node name="BackdropHaus5" type="Sprite" parent="."]
-position = Vector2( 2988, 855 )
+position = Vector2( 2984, 857 )
+scale = Vector2( 0.766833, 0.766833 )
 texture = ExtResource( 6 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -54,3 +63,27 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 0.561503, 3.96039, 1254, 171, 2858, 476, 3772.4, 684.221, 3905, 1076, -92, 1079 )
+
+[node name="Node2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 263, -28 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 667, 70 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1280, 187 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1768, 462 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2217, 565 )
+
+[node name="Node2D6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2585, 647 )
+
+[node name="Node2D7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3034, 793 )
+
+[node name="Node2D8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 3390, 1000 )

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Cuteness_Eule Körper.png" type="Texture" id=1]
+[ext_resource path="res://BodyPartConfig.cs" type="Script" id=2]
+[ext_resource path="res://Animal.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Cuteness_Eule Kopf.png" type="Texture" id=4]
+
+[node name="Animal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -53, -11 )
+offset = Vector2( -91.7718, -69.2083 )
+texture = ExtResource( 1 )
+texture_offset = Vector2( 45.594, 41.808 )
+texture_scale = Vector2( 10, 10 )
+polygon = PoolVector2Array( 106.772, 105.208, 62.7718, 104.208, 53.7718, 74.2083, 67.7718, 38.2083, 94.7718, 32.2083, 124.772, 40.2083, 129.772, 79.2083 )
+script = ExtResource( 2 )
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D"]
+position = Vector2( 0, -32 )
+texture = ExtResource( 4 )
+texture_offset = Vector2( 50, 75 )
+texture_scale = Vector2( 10, 10 )
+texture_rotation_degrees = -16.5
+polygon = PoolVector2Array( -28, -49, -35, -33, -31, -14, -14, 0, 8, 4, 25, 2, 45, -15, 53, -35, 51, -52, -16, -66 )
+script = ExtResource( 2 )
+RotSpeed = 1.8

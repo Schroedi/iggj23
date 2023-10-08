@@ -23,7 +23,7 @@ public class CameraController : Camera2D
             if (state.LargestAnimal != null)
             {
                 var a = 0.9f;
-                Offset = a * Offset + (1 - a) * state.LargestAnimal.AveragePosition;
+                Offset = a * Offset + (1 - a) * state.LargestAnimal.ComputeAveragePosition();
                 // GD.Print(Offset);
                 // GD.Print(state.LargestAnimal.AveragePosition);
             }

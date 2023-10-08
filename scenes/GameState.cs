@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class GameState : Node2D
 {
@@ -30,17 +32,40 @@ public class GameState : Node2D
     {
         CurrentState = "Throwing";
 
+        var allAnimals = ConnectedAnimal.ComputeAnimals(GameRoot);
+
         LargestAnimal = null;
-        foreach (var n in GameRoot.GetChildren())
-            if (n is AnimalPhysics ap)
-                if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea)
-                    LargestAnimal = ap;
+        foreach (var ap in allAnimals)
+            if (LargestAnimal == null || LargestAnimal.TotalArea < ap.TotalArea)
+                LargestAnimal = ap;
+
+        // explode all others
+        var bloodExplScene = GD.Load<PackedScene>("res://BloodParticlesEx.tscn");
+        foreach (var ca in allAnimals)
+        {
+            if (ca == LargestAnimal)
+                continue;
+
+            foreach (var ap in ca.AllAnimals)
+            {
+                foreach (var bp in ap.Parts)
+                {
+                    var blood = bloodExplScene.Instance<CPUParticles2D>();
+                    blood.GlobalPosition = bp.GlobalPosition;
+                    blood.Emitting = true;
+                    GameRoot.AddChild(blood);
+                }
+
+                // delete animal
+                ap.QueueFree();
+            }
+        }
     }
 
     public bool IsCutting => CurrentState == "Cutting";
     public bool IsStitching => CurrentState == "Stitching";
     public bool IsThrowing => CurrentState == "Throwing";
 
-    public AnimalPhysics LargestAnimal = null;
+    public ConnectedAnimal LargestAnimal = null;
     public Node2D GameRoot = null;
 }

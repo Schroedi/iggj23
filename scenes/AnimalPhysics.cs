@@ -17,7 +17,9 @@ public class AnimalPhysics : Node2D
 
     public AnimalDataSetup AnimalSetup;
 
-    List<bodypart> Parts = new List<bodypart>();
+    public List<bodypart> Parts = new List<bodypart>();
+
+    public List<AnimalPhysics> ConnectedPhysics = new List<AnimalPhysics>();
 
     public float TotalArea = 0f;
 

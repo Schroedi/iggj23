@@ -10,6 +10,9 @@ public class Cutter : Line2D
     {
         if (@event is InputEventScreenTouch touch)
         {
+            if (!GameState.Current(this).IsCutting)
+                return;
+            
             // don't cut while we hover any animal(part) - except if we are already cutting
             if (!Visible && _globals.Get("PartsHovering") as int? != 0)
                 return;

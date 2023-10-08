@@ -55,6 +55,13 @@ func stopDrag():
 	GlobalHack.Picked = false
 	joint.queue_free()
 	
+	if !GlobalHack.CurrentGamestate.IsStitching:
+		return
+		
+	doConnectMagic()
+
+
+func doConnectMagic():
 	# try to re-attach
 	# get the overlapping areas of this body's connection areas
 	for c in $"../Connectors".get_children():

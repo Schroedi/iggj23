@@ -19,4 +19,18 @@ public class GameState : Node2D
     {
         GetNode<Node>("/root/GlobalHack").Set("CurrentGamestate", this);
     }
+
+    public void StartPhase2()
+    {
+        CurrentState = "Stitching";
+    }
+    
+    public void StartPhase3()
+    {
+        CurrentState = "Throwing";
+    }
+    
+    public bool IsCutting => CurrentState == "Cutting";
+    public bool IsStitching => CurrentState == "Stitching";
+    public bool IsThrowing => CurrentState == "Throwing";
 }

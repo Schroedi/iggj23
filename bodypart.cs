@@ -173,4 +173,29 @@ public class bodypart : RigidBody2D
             // AngularVelocity = (float)targetAngle * RotLimit;
         }
     }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        // check current gamestate and set physics accordingly
+        var state = GameState.Current(this);
+        if (state.IsCutting)
+        {
+            LinearDamp = 0.5f;
+            AngularDamp = 0.5f;
+        }
+        else if (state.IsStitching)
+        {
+            LinearDamp = 0.5f;
+            AngularDamp = 0.5f;
+        }
+        else if (state.IsThrowing)
+        {
+            LinearDamp = 0.1f;
+            AngularDamp = 0.1f;
+        }
+        else
+        {
+            GD.PrintErr("Unknown game state! In bodypart.cs");
+        }
+    }
 }
